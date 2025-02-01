@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecnologia - Itech Diamond</title>
+    <link rel="stylesheet" href="styles/output.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --diamond-color: #6dbdcf;
+            --diamond-hover: #5aa8b9;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .text-diamond {
+            color: var(--diamond-color);
+        }
+        .hover\:text-diamond:hover {
+            color: var(--diamond-hover);
+        }
+        .fade-in {
+            animation: fadeIn 2s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .diamond-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .falling-diamond {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-image: url('assets/diamante.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.3;
+        }
+        @keyframes fallAndRotate {
+            0% {
+                transform: translateY(-10vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        .tech-card {
+            transition: all 0.3s ease;
+        }
+        .tech-card:hover {
+            transform: translateY(-10px);
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="diamond-background" id="diamondContainer"></div>
+    
+    <header class="bg-white shadow-lg">
+        <div class="container mx-auto px-4 py-6 flex justify-between items-center fade-in">
+            <img src="assets/logoItech.png" alt="Itech Diamond Logo" class="h-40 ml-20">
+            <nav>
+                <ul class="flex space-x-12 mr-20 text-lg">
+                    <li><a href="index.html" class="text-diamond hover:text-diamond transition duration-300">Home</a></li>
+                    <li><a href="ferramentas.html" class="text-diamond hover:text-diamond transition duration-300">Ferramentas</a></li>
+                    <li><a href="tecnologia.html" class="text-diamond hover:text-diamond transition duration-300">Tecnologia</a></li>
+                    <li><a href="suporte.html" class="text-diamond hover:text-diamond transition duration-300">Suporte Técnico</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-10">
+        <!-- Hero Section -->
+<section class="text-center mb-12 fade-in">
+    <h1 class="text-5xl font-bold text-diamond mb-6">Nossa Tecnologia</h1>
+    <p class="text-xl text-gray-600 mt-4 max-w-3xl mx-auto">
+        Excelência em ferramentas de metal duro e aços especiais
+    </p>
+</section>
+
+<!-- Tecnologia Principal -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20 items-center fade-in">
+    <div class="space-y-6">
+        <h2 class="text-3xl font-bold text-diamond">Tecnologia de Ponta</h2>
+        <p class="text-gray-600 leading-relaxed">
+            Utilizamos materiais de alta qualidade como metal duro, aço inox e alumínio, 
+            garantindo precisão excepcional e durabilidade superior em todas as nossas ferramentas. 
+            Nossa experiência nos permite desenvolver soluções específicas para cada necessidade.
+        </p>
+        <ul class="space-y-4">
+            <li class="flex items-center">
+                <svg class="w-6 h-6 text-diamond mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                </svg>
+                Metal duro de alta performance
+            </li>
+            <li class="flex items-center">
+                <svg class="w-6 h-6 text-diamond mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                </svg>
+                Aços especiais selecionados
+            </li>
+            <li class="flex items-center">
+                <svg class="w-6 h-6 text-diamond mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                </svg>
+                Controle dimensional rigoroso
+            </li>
+        </ul>
+    </div>
+</section>
+
+        <!-- Cards de Tecnologia -->
+        <section class="mb-20 fade-in">
+            <h2 class="text-4xl font-bold text-diamond text-center mb-12">Nossas Inovações</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <div class="tech-card bg-white p-8 rounded-lg shadow-lg">
+                    <div class="text-4xl text-[#6dbdcf] mb-4">🔍</div>
+                    <h3 class="text-xl font-semibold mb-2">Precisão Absoluta</h3>
+                    <p class="text-gray-600">Sistema de medição a laser para garantir precisão submilimétrica.</p>
+                </div>
+
+                <div class="tech-card bg-white p-8 rounded-lg shadow-lg">
+                    <div class="text-4xl text-[#6dbdcf] mb-4">🔧</div>
+                    <h3 class="text-xl font-semibold mb-2">Durabilidade Superior</h3>
+                    <p class="text-gray-600">Materiais de alta qualidade e processos rigorosos de fabricação.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Produtos e Tecnologias -->
+<section class="mb-20 fade-in">
+    <h2 class="text-4xl font-bold text-diamond text-center mb-12">Tecnologia e Qualidade</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-lg shadow-lg text-center transform hover:scale-105 transition duration-300">
+            <div class="text-4xl text-[#6dbdcf] mb-4">🔧</div>
+            <h3 class="text-xl font-semibold mb-3">Produtos GESAC</h3>
+            <p class="text-gray-600 mb-4">Distribuidor oficial de ferramentas GESAC, garantindo qualidade e procedência.</p>
+            <ul class="text-left text-sm text-gray-500 space-y-2 pl-4">
+                <li>• Metal duro importado</li>
+                <li>• Aços especiais certificados</li>
+                <li>• Garantia de fábrica</li>
+            </ul>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-lg text-center transform hover:scale-105 transition duration-300">
+            <div class="text-4xl text-[#6dbdcf] mb-4">📊</div>
+            <h3 class="text-xl font-semibold mb-3">Suporte Técnico</h3>
+            <p class="text-gray-600 mb-4">Assistência especializada na escolha e aplicação das ferramentas.</p>
+            <ul class="text-left text-sm text-gray-500 space-y-2 pl-4">
+                <li>• Consultoria técnica</li>
+                <li>• Seleção adequada</li>
+                <li>• Otimização de processos</li>
+            </ul>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-lg text-center transform hover:scale-105 transition duration-300">
+            <div class="text-4xl text-[#6dbdcf] mb-4">🚚</div>
+            <h3 class="text-xl font-semibold mb-3">Pronta Entrega</h3>
+            <p class="text-gray-600 mb-4">Estoque estratégico para atendimento imediato.</p>
+            <ul class="text-left text-sm text-gray-500 space-y-2 pl-4">
+                <li>• Disponibilidade imediata</li>
+                <li>• Entrega rápida</li>
+                <li>• Produtos em estoque</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+
+    </main>
+
+    <footer class="bg-white shadow-lg mt-12 fade-in">
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contato</h4>
+                    <p class="text-gray-600">vendas@itechdiamond.com.br</p>
+                    <p class="text-gray-600">+55 51 99511-2894</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Horário de Atendimento</h4>
+                    <p class="text-gray-600">Segunda a Sexta</p>
+                    <p class="text-gray-600">08:00 - 18:00</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-200 mt-8 pt-8 text-center">
+                <p class="text-gray-600">&copy; 2025 Itech Diamond. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function createDiamond() {
+            const diamond = document.createElement('div');
+            diamond.className = 'falling-diamond';
+            
+            const left = Math.random() * window.innerWidth;
+            diamond.style.left = `${left}px`;
+            
+            const duration = 8 + Math.random() * 7;
+            const delay = Math.random() * 5;
+            
+            diamond.style.animation = `fallAndRotate ${duration}s linear ${delay}s infinite`;
+            
+            document.getElementById('diamondContainer').appendChild(diamond);
+            
+            setTimeout(() => {
+                diamond.remove();
+            }, (duration + delay) * 1000);
+        }
+
+        // Criar diamantes iniciais
+        for(let i = 0; i < 30; i++) {
+            createDiamond();
+        }
+
+        // Criar novos diamantes
+        setInterval(createDiamond, 1000);
+    </script>
+</body>
+</html>

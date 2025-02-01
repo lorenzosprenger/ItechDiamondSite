@@ -1,0 +1,22 @@
+{
+  "name": "itech-diamond-landing-page",
+  "version": "1.0.0",
+  "description": "Landing page para o e-commerce da Itech Diamond utilizando Tailwind CSS.",
+  "main": "src/index.html",
+  "scripts": {
+    "build": "tailwindcss -i ./src/styles/tailwind.css -o ./src/styles/output.css",
+    "watch": "tailwindcss -i ./src/styles/tailwind.css -o ./src/styles/output.css --watch",
+    "start": "live-server src"
+  },
+  "author": "Seu Nome",
+  "license": "MIT",
+  "dependencies": {
+    "live-server": "^1.2.1",
+    "tailwindcss": "^2.2.19"
+  },
+  "keywords": [
+    "e-commerce",
+    "landing page",
+    "tailwindcss"
+  ]
+}
