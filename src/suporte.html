@@ -6,6 +6,7 @@
     <title>Suporte Técnico - Itech Diamond</title>
     <link rel="stylesheet" href="styles/output.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="/src/assets/DIAMANTE.png" type="image/x-icon">
     <style>
         :root {
             --diamond-color: #6dbdcf;
@@ -72,7 +73,7 @@
     <!-- Header -->
     <header class="bg-white shadow-lg">
         <div class="container mx-auto px-4 py-6 flex justify-between items-center fade-in">
-            <img src="assets/logoItech.png" alt="Itech Diamond Logo" class="h-40 ml-20">
+            <img src="assets/logoItech.png" alt="Itech Diamond Logo" class="h-40 ml-20" onclick="location.href='index.html'" style="cursor: pointer;">
             <nav>
                 <ul class="flex space-x-12 mr-20 text-lg">
                     <li><a href="index.html" class="text-diamond hover:text-diamond transition duration-300">Home</a></li>
@@ -112,7 +113,30 @@
             </div>
         </section>
     
-        <!-- Formulário Unificado -->
+
+        <!-- FAQ Section -->
+        <section class="mb-20 fade-in">
+            <h2 class="text-4xl font-bold text-diamond text-center mb-12">Perguntas Frequentes</h2>
+            <div class="max-w-3xl mx-auto space-y-4">
+                <div class="faq-item bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Como escolher a ferramenta ideal?</h3>
+                    <p class="text-gray-600">Nossa equipe técnica está disponível para auxiliar na escolha da ferramenta mais adequada para sua aplicação específica.</p>
+                </div>
+
+                <div class="faq-item bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Qual a vida útil das ferramentas?</h3>
+                    <p class="text-gray-600">A vida útil varia de acordo com a aplicação e condições de uso. Nossa equipe pode fornecer estimativas baseadas em sua necessidade.</p>
+                </div>
+
+                <div class="faq-item bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-2">Como realizar a manutenção adequada?</h3>
+                    <p class="text-gray-600">Oferecemos treinamento e suporte para garantir a máxima durabilidade e desempenho das ferramentas.</p>
+                </div>
+            </div>
+        </section>
+
+
+                <!-- Formulário Unificado -->
         <section class="mb-20 fade-in">
             <div class="bg-white rounded-lg shadow-xl p-8">
                 <h2 class="text-4xl font-bold text-diamond text-center mb-8">Entre em Contato</h2>
@@ -136,48 +160,10 @@
                 </form>
             </div>
         </section>
-    
-
-        <!-- FAQ Section -->
-        <section class="mb-20 fade-in">
-            <h2 class="text-4xl font-bold text-diamond text-center mb-12">Perguntas Frequentes</h2>
-            <div class="max-w-3xl mx-auto space-y-4">
-                <div class="faq-item bg-white p-6 rounded-lg shadow-lg">
-                    <h3 class="text-xl font-semibold mb-2">Como escolher a ferramenta ideal?</h3>
-                    <p class="text-gray-600">Nossa equipe técnica está disponível para auxiliar na escolha da ferramenta mais adequada para sua aplicação específica.</p>
-                </div>
-
-                <div class="faq-item bg-white p-6 rounded-lg shadow-lg">
-                    <h3 class="text-xl font-semibold mb-2">Qual a vida útil das ferramentas?</h3>
-                    <p class="text-gray-600">A vida útil varia de acordo com a aplicação e condições de uso. Nossa equipe pode fornecer estimativas baseadas em sua necessidade.</p>
-                </div>
-
-                <div class="faq-item bg-white p-6 rounded-lg shadow-lg">
-                    <h3 class="text-xl font-semibold mb-2">Como realizar a manutenção adequada?</h3>
-                    <p class="text-gray-600">Oferecemos treinamento e suporte para garantir a máxima durabilidade e desempenho das ferramentas.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Formulário de Suporte -->
-        <section class="mb-20 fade-in">
-            <div class="bg-white rounded-lg shadow-xl p-8">
-                <h2 class="text-4xl font-bold text-diamond text-center mb-8">Solicite Suporte</h2>
-                <form id="formSuporte" class="max-w-2xl mx-auto">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                        <input type="text" name="nome" placeholder="Nome" required class="p-3 border rounded focus:ring-2 focus:ring-diamond focus:border-diamond outline-none">
-                        <input type="email" name="email" placeholder="Email" required class="p-3 border rounded focus:ring-2 focus:ring-diamond focus:border-diamond outline-none">
-                    </div>
-                    <input type="text" name="assunto" placeholder="Assunto" required class="w-full p-3 border rounded mb-6 focus:ring-2 focus:ring-diamond focus:border-diamond outline-none">
-                    <textarea name="mensagem" placeholder="Descreva sua necessidade" rows="4" required class="w-full p-3 border rounded mb-6 focus:ring-2 focus:ring-diamond focus:border-diamond outline-none"></textarea>
-                    <button type="submit" class="w-full bg-diamond text-white py-3 rounded hover:bg-diamond-hover transition font-semibold">
-                        Enviar Solicitação
-                    </button>
-                </form>
-            </div>
-        </section>
     </main>
 
+
+    
     <!-- Footer -->
     <footer class="bg-white shadow-lg mt-12 fade-in">
         <div class="container mx-auto px-4 py-12">
