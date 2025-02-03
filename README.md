@@ -5,7 +5,7 @@ Este projeto é uma landing page para o e-commerce da Itech Diamond, construída
 ## Estrutura do Projeto
 
 ```
-itech-diamond-landing-page
+ItechDiamondSite
 ├── node_modules/            # Dependências do Node.js
 ├── src/                     # Diretório principal do código-fonte
 │   ├── assets/              # Recursos estáticos (imagens, ícones, etc.)
@@ -40,7 +40,7 @@ itech-diamond-landing-page
 2. Navegue até o diretório do projeto:
 
    ```sh
-   cd itech-diamond-landing-page
+   cd ItechDiamondSite
    ```
 
 3. Instale as dependências:
