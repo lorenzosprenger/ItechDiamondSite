@@ -221,6 +221,11 @@
     </footer>
 
     <script>
+        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+function updateCartCount() {
+    document.getElementById('cart-count').innerText = cartItems.length;
+}
         function createDiamond() {
             const diamond = document.createElement('div');
             diamond.className = 'falling-diamond';
@@ -247,6 +252,8 @@
 
         // Criar novos diamantes
         setInterval(createDiamond, 1000);
+        updateCartCount();
+
     </script>
 </body>
 </html>

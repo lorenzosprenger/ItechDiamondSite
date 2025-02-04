@@ -263,7 +263,9 @@ const produtos = [
     { nome: "FRESA MD TOROIDAL 8,0X20/6", referencia: "SP210-R4-08010", categoria: "fresa" },
     { nome: "PASTILHA APMT 1135PDER PM", referencia: "PAPMT1135PDER-PM-GA4", categoria: "pastilha" }
 ];
-
+function updateCartCount() {
+            document.getElementById('cart-count').innerText = cartItems.length;
+        }
 const container = document.querySelector(".grid");
 
 // Adiciona os produtos na página
@@ -273,7 +275,7 @@ produtos.forEach((produto) => {
     // Adiciona a classe correspondente à categoria
     div.className = `produto ${produto.categoria} bg-white rounded-lg shadow-lg overflow-hidden`;
     div.innerHTML = `
-        <img src="assets/produto.jpg" alt="${produto.nome}" class="w-full h-48 object-cover">
+        
         <div class="p-6">
             <h3 class="text-xl font-semibold text-diamond mb-2">${produto.nome}</h3>
             <p class="text-gray-600 mb-2"><strong>Referência:</strong> ${produto.referencia}</p>
@@ -320,6 +322,7 @@ buttons.forEach((button) => {
     });
 });
 
+updateCartCount();
 
 
 </script>

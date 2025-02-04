@@ -150,7 +150,7 @@
         </section>
 
 
-                <!-- Formulário Unificado -->
+        <!-- Formulário Unificado -->
         <section class="mb-20 fade-in">
             <div class="bg-white rounded-lg shadow-xl p-8">
                 <h2 class="text-4xl font-bold text-diamond text-center mb-8">Entre em Contato</h2>
@@ -168,10 +168,13 @@
                     </div>
                     <input type="text" name="assunto" placeholder="Assunto" required class="w-full p-3 border rounded mb-6 focus:ring-2 focus:ring-diamond focus:border-diamond outline-none">
                     <textarea name="mensagem" placeholder="Mensagem" rows="4" required class="w-full p-3 border rounded mb-6 focus:ring-2 focus:ring-diamond focus:border-diamond outline-none"></textarea>
-                    <button type="submit" class="w-full bg-[#6dbdcf] text-white py-3 rounded hover:bg-[#5aa8b9] transition font-semibold">
-                        Enviar Mensagem
-                    </button>
+                    <div class="flex justify-center">
+                        <button type="submit" class="border-2 border-gray-600 text-gray-600 px-8 py-2 rounded-full hover:bg-gray-700 hover:text-white transition transform hover:scale-105 font-semibold">
+                            Enviar Mensagem
+                        </button>
+                    </div>
                 </form>
+                <div id="statusMensagem" class="text-center mt-4"></div>
             </div>
         </section>
     </main>
@@ -200,6 +203,12 @@
     </footer>
 
     <script>
+        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+        function updateCartCount() {
+            document.getElementById('cart-count').innerText = cartItems.length;
+        }
+
         // Animação dos diamantes
         function createDiamond() {
             const diamond = document.createElement('div');
@@ -225,23 +234,39 @@
             createDiamond();
         }
 
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("formContato");
+
+            form.addEventListener("submit", function (event) {
+                event.preventDefault(); // Impede o recarregamento da página
+
+                const formData = new FormData(form);
+
+                fetch("enviar_email.php", {
+                    method: "POST",
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const statusMensagem = document.getElementById("statusMensagem");
+                    if (data.success) {
+                        statusMensagem.innerHTML = `<span class="text-green-600 font-semibold">Mensagem enviada com sucesso!</span>`;
+                        form.reset();
+                    } else {
+                        statusMensagem.innerHTML = `<span class="text-red-600 font-semibold">Erro ao enviar mensagem. Tente novamente!</span>`;
+                    }
+                })
+                .catch(error => {
+                    console.error("Erro:", error);
+                    document.getElementById("statusMensagem").innerHTML = `<span class="text-red-600 font-semibold">Erro no servidor. Tente novamente mais tarde!</span>`;
+                });
+            });
+        });
+
         // Criar novos diamantes
         setInterval(createDiamond, 1000);
 
-        // Formulário de Suporte
-        document.getElementById('formSuporte').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData.entries());
-            
-            // Aqui você pode adicionar a lógica de envio do formulário
-            console.log('Dados do formulário:', data);
-            
-            // Exemplo de feedback ao usuário
-            alert('Solicitação enviada com sucesso! Em breve entraremos em contato.');
-            this.reset();
-        });
+        updateCartCount();
     </script>
 </body>
 </html>

@@ -1,155 +1,245 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Carrinho - Itech Diamond</title>
     <link rel="stylesheet" href="styles/output.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
     <link rel="shortcut icon" href="/src/assets/DIAMANTE.png" type="image/x-icon">
     <style>
-      :root {
-        --diamond-color: #6dbdcf;
-        --diamond-hover: #5aa8b9;
-      }
-      body {
-        font-family: "Poppins", sans-serif;
-      }
-      .text-diamond {
-        color: var(--diamond-color);
-      }
-      .hover\:text-diamond:hover {
-        color: var(--diamond-hover);
-      }
-      .fade-in {
-        animation: fadeIn 2s ease-in-out;
-      }
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
+        :root {
+            --diamond-color: #6dbdcf;
+            --diamond-hover: #5aa8b9;
         }
-        to {
-          opacity: 1;
+        body {
+            font-family: "Poppins", sans-serif;
         }
-      }
+        .text-diamond {
+            color: var(--diamond-color);
+        }
+        .hover\:text-diamond:hover {
+            color: var(--diamond-hover);
+        }
+        .fade-in {
+            animation: fadeIn 2s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        .dropdown {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown a:hover {
+            background-color: #f1f1f1;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
     </style>
-  </head>
-  <body class="bg-gray-100">
+</head>
+<body class="bg-gray-100">
     <header class="bg-white shadow-lg">
-      <div class="container mx-auto px-4 py-6 flex justify-between items-center fade-in">
-        <img src="assets/logoItech.png" alt="Itech Diamond Logo" class="h-40 ml-20" onclick="location.href='index.html'" style="cursor: pointer;">
-        <nav>
-          <ul class="flex space-x-12 mr-20 text-lg">
-            <li>
-              <a href="index.html" class="text-diamond hover:text-diamond transition duration-300">Home</a>
-            </li>
-            <li>
-              <a href="ferramentas.html" class="text-diamond hover:text-diamond transition duration-300">Ferramentas</a>
-            </li>
-            <li>
-              <a href="tecnologia.html" class="text-diamond hover:text-diamond transition duration-300">Tecnologia</a>
-            </li>
-            <li>
-              <a href="suporte.html" class="text-diamond hover:text-diamond transition duration-300">Suporte Técnico</a>
-            </li>
-            <li class="relative">
-              <a href="carrinho.html" class="text-diamond px-3 hover:text-diamond transition duration-300">
-                🛒
-                <span id="cart-count" class="absolute top-0 right-0 bg-red-500 text-white rounded-full px-1 text-xs">0</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
+        <div class="container mx-auto px-4 py-6 flex justify-between items-center fade-in">
+            <img src="assets/logoItech.png" alt="Itech Diamond Logo" class="h-40 ml-20" onclick="location.href='index.html'" style="cursor: pointer;">
+            <nav>
+                <ul class="flex space-x-12 mr-20 text-lg">
+                    <li>
+                        <a href="index.html" class="text-diamond hover:text-diamond transition duration-300">Home</a>
+                    </li>
+                    <li>
+                        <a href="ferramentas.html" class="text-diamond hover:text-diamond transition duration-300">Ferramentas</a>
+                    </li>
+                    <li>
+                        <a href="tecnologia.html" class="text-diamond hover:text-diamond transition duration-300">Tecnologia</a>
+                    </li>
+                    <li>
+                        <a href="suporte.html" class="text-diamond hover:text-diamond transition duration-300">Suporte Técnico</a>
+                    </li>
+                    <li class="relative">
+                        <a href="carrinho.html" class="text-diamond px-3 hover:text-diamond transition duration-300">
+                            🛒
+                            <span id="cart-count" class="absolute top-0 right-0 bg-red-500 text-white rounded-full px-1 text-xs">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main class="container mx-auto px-4 py-10">
-      <section class="text-center mb-12 fade-in">
-        <h1 class="text-5xl font-bold text-diamond mb-6">Carrinho de Compras</h1>
-        <p class="text-xl text-gray-600 mt-4 max-w-3xl mx-auto">
-          Revise os itens adicionados ao seu carrinho antes de finalizar o orçamento.
-        </p>
-      </section>
+        <section class="text-center mb-12">
+            <h1 class="text-5xl font-bold text-diamond mb-6">Carrinho de Compras</h1>
+            <p class="text-xl text-gray-600">Revise seus itens antes de solicitar um orçamento.</p>
+        </section>
+        
+        <section class="mb-12">
+            <div id="cart-items" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
+            <div class="text-center mt-8">
+                <button id="solicitarOrcamentoBtn" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700">
+                    Solicitar Orçamento
+                </button>
+                <button class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-700" onclick="clearCart()">
+                    Limpar Carrinho
+                </button>
+            </div>
 
-      <section class="mb-12 fade-in">
-        <div id="cart-items" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <!-- Itens do carrinho serão adicionados aqui -->
-        </div>
-        <div class="text-center mt-8">
-          <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition">
-            Solicitar Orçamento
-          </button>
-          <button class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-700 transition" onclick="clearCart()">
-            Limpar Carrinho
-          </button>
-        </div>
-      </section>
+            <div id="orcamentoModal" class="modal">
+                <div class="modal-content">
+                    <h2>Solicitar Orçamento</h2>
+                    <input type="text" id="userName" placeholder="Digite seu nome" class="mb-4 p-2 border rounded">
+                    <br>
+                    <button class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-700" id="whatsappLink">WhatsApp</button>
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700" id="emailLink">E-mail</button>
+                    <br>
+                    <button id="closeModal">Fechar</button>
+                </div>
+            </div>
+        </section>
     </main>
-
     <footer class="bg-white shadow-lg mt-12 fade-in">
-      <div class="container mx-auto px-4 py-6 text-center">
-        <p class="text-gray-600">
-          &copy; 2025 Itech Diamond. Todos os direitos reservados.
-        </p>
-      </div>
+        <div class="container mx-auto px-4 py-6 text-center">
+            <p class="text-gray-600">
+                &copy; 2025 Itech Diamond. Todos os direitos reservados.
+            </p>
+        </div>
     </footer>
 
     <script>
-      let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+         let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
-      function renderCartItems() {
-        const cartContainer = document.getElementById('cart-items');
-        cartContainer.innerHTML = '';
+function updateCartCount() {
+    document.getElementById('cart-count').innerText = cartItems.length;
+}
 
-        // Agrupar itens por nome e referência
-        const groupedItems = cartItems.reduce((acc, item) => {
-          const key = `${item.nome}-${item.referencia}`;
-          if (!acc[key]) {
+function renderCartItems() {
+    const cartContainer = document.getElementById('cart-items');
+    cartContainer.innerHTML = '';
+    
+    const groupedItems = cartItems.reduce((acc, item) => {
+        const key = `${item.nome}-${item.referencia}`;
+        if (!acc[key]) {
             acc[key] = { ...item, quantidade: 0 };
-          }
-          acc[key].quantidade += 1;
-          return acc;
-        }, {});
-
-        Object.values(groupedItems).forEach((item, index) => {
-          const div = document.createElement('div');
-          div.className = 'produto bg-white rounded-lg shadow-lg overflow-hidden';
-          div.innerHTML = `
-            <img src="assets/produto.jpg" alt="${item.nome}" class="w-full h-48 object-cover">
-            <div class="p-6">
-              <h3 class="text-xl font-semibold text-diamond mb-2">${item.nome} <span class="text-sm text-gray-600">(${item.quantidade})</span></h3>
-              <p class="text-gray-600 mb-2"><strong>Referência:</strong> ${item.referencia}</p>
-              <p class="text-gray-600 mb-4">Produto de alta qualidade para usinagem</p>
-              <button class="w-full bg-red-500 text-white py-2 rounded hover:bg-red-700 transition" onclick="removeFromCart('${item.nome}', '${item.referencia}')">
-                Remover
-              </button>
-            </div>
-          `;
-          cartContainer.appendChild(div);
-        });
-
-        document.getElementById('cart-count').innerText = cartItems.length;
-      }
-
-      function removeFromCart(nome, referencia) {
-        const index = cartItems.findIndex(item => item.nome === nome && item.referencia === referencia);
-        if (index !== -1) {
-          cartItems.splice(index, 1);
-          localStorage.setItem('cartItems', JSON.stringify(cartItems));
-          renderCartItems();
         }
-      }
+        acc[key].quantidade += 1;
+        return acc;
+    }, {});
 
-      function clearCart() {
-        cartItems = [];
-        localStorage.setItem('cartItems', JSON.stringify(cartItems));
-        renderCartItems();
-      }
+    Object.values(groupedItems).forEach((item, index) => {
+        const div = document.createElement('div');
+        div.className = 'produto bg-white rounded-lg shadow-lg overflow-hidden';
+        div.innerHTML = `
+            <div class="p-6">
+                <h3 class="text-xl font-semibold text-diamond mb-2 item-name">${item.nome}</h3>
+                <p class="text-gray-600 mb-2"><strong>Referência:</strong> ${item.referencia}</p>
+                <p class="text-gray-600 mb-2 item-quantity">Quantidade: ${item.quantidade}</p>
+                <button class="remove-item bg-red-500 text-white py-1 px-2 rounded hover:bg-red-700" data-index="${index}">Remover</button>
+            </div>
+        `;
+        cartContainer.appendChild(div);
+    });
 
-      renderCartItems();
+    document.querySelectorAll('.remove-item').forEach(button => {
+        button.addEventListener('click', function() {
+            const index = this.getAttribute('data-index');
+            removeCartItem(index);
+        });
+    });
+
+    updateCartCount();
+}
+
+function removeCartItem(index) {
+    cartItems.splice(index, 1);
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    renderCartItems();
+}
+
+function clearCart() {
+    cartItems = [];
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    renderCartItems();
+}
+
+document.getElementById('solicitarOrcamentoBtn').addEventListener('click', function() {
+    document.getElementById('orcamentoModal').style.display = 'flex';
+});
+
+document.getElementById('closeModal').addEventListener('click', function() {
+    document.getElementById('orcamentoModal').style.display = 'none';
+});
+
+function generateMessage(userName) {
+    if (!userName) {
+        alert('Por favor, insira seu nome.');
+        return;
+    }
+
+    let itemsText = '';
+    const groupedItems = cartItems.reduce((acc, item) => {
+        const key = `${item.nome}-${item.referencia}`;
+        if (!acc[key]) {
+            acc[key] = { ...item, quantidade: 0 };
+        }
+        acc[key].quantidade += 1;
+        return acc;
+    }, {});
+
+    Object.values(groupedItems).forEach(item => {
+        itemsText += `- ${item.nome} (Referência: ${item.referencia}, Quantidade: ${item.quantidade})\n`;
+    });
+
+    return `Olá, meu nome é ${userName}. Gostaria de solicitar um orçamento para os seguintes itens:\n\n${itemsText}`;
+}
+
+document.getElementById('whatsappLink').addEventListener('click', function() {
+    var userName = document.getElementById('userName').value;
+    var message = generateMessage(userName);
+    if (message) {
+        window.open(`https://wa.me/555195112894?text=${encodeURIComponent(message)}`, '_blank');
+    }
+});
+
+document.getElementById('emailLink').addEventListener('click', function() {
+    var userName = document.getElementById('userName').value;
+    var message = generateMessage(userName);
+    if (message) {
+        window.open(`mailto:vendas@itechdiamond.com.br?subject=Solicita%C3%A7%C3%A3o%20de%20Or%C3%A7amento&body=${encodeURIComponent(message)}`, '_blank');
+    }
+});
+
+// Atualiza o contador do carrinho ao carregar a página
+updateCartCount();
+renderCartItems();
     </script>
-  </body>
+</body>
 </html>

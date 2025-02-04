@@ -149,17 +149,25 @@
                 <h2 class="text-4xl font-bold text-diamond text-center mb-8">Entre em Contato</h2>
                 <form id="formContato" class="max-w-2xl mx-auto">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                        <input type="text" id="nome" name="nome" placeholder="Nome" required class="p-3 border rounded focus:ring-2 focus:ring-diamond focus:border-diamond outline-none">
-                        <input type="email" id="email" name="email" placeholder="Email" required class="p-3 border rounded focus:ring-2 focus:ring-diamond focus:border-diamond outline-none">
+                        <input type="text" name="nome" placeholder="Nome" required class="p-3 border rounded focus:ring-2 focus:ring-diamond focus:border-diamond outline-none">
+                        <input type="email" name="email" placeholder="Email" required class="p-3 border rounded focus:ring-2 focus:ring-diamond focus:border-diamond outline-none">
                     </div>
-                    <input type="text" id="assunto" name="assunto" placeholder="Assunto" required class="w-full p-3 border rounded mb-6 focus:ring-2 focus:ring-diamond focus:border-diamond outline-none">
-                    <textarea id="mensagem" name="mensagem" placeholder="Mensagem" rows="4" required class="w-full p-3 border rounded mb-6 focus:ring-2 focus:ring-diamond focus:border-diamond outline-none"></textarea>
-                    <button type="submit" class="w-full bg-diamond text-black py-3 rounded hover:bg-diamond-hover transition font-semibold">
-                        Enviar Mensagem
-                    </button>
-                    <p id="statusMensagem" class="text-center mt-4"></p>
+                    <div class="mb-6">
+                        <select name="tipo" class="w-full p-3 border rounded focus:ring-2 focus:ring-diamond focus:border-diamond outline-none">
+                            <option value="suporte">Suporte Técnico</option>
+                            <option value="comercial">Comercial</option>
+                            <option value="outros">Outros</option>
+                        </select>
+                    </div>
+                    <input type="text" name="assunto" placeholder="Assunto" required class="w-full p-3 border rounded mb-6 focus:ring-2 focus:ring-diamond focus:border-diamond outline-none">
+                    <textarea name="mensagem" placeholder="Mensagem" rows="4" required class="w-full p-3 border rounded mb-6 focus:ring-2 focus:ring-diamond focus:border-diamond outline-none"></textarea>
+                    <div class="flex justify-center">
+                        <button type="submit" class="border-2 border-gray-600 text-gray-600 px-8 py-2 rounded-full hover:bg-gray-700 hover:text-white transition transform hover:scale-105 font-semibold">
+                            Enviar Mensagem
+                        </button>
+                    </div>
                 </form>
-                
+                <div id="statusMensagem" class="text-center mt-4"></div>
             </div>
         </section>
 
@@ -195,6 +203,12 @@
     </footer>
     <script src="scripts/main.js"></script>
     <script>
+        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+        function updateCartCount() {
+            document.getElementById('cart-count').innerText = cartItems.length;
+        }
+
         function createDiamond() {
             const diamond = document.createElement('div');
             diamond.className = 'falling-diamond';
@@ -221,38 +235,36 @@
             createDiamond();
         }
 
-        // Criar novos diamantes mais frequentemente
-        
-
         document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("formContato");
+            const form = document.getElementById("formContato");
+            console.log(form);
+            form.addEventListener("submit", function (event) {
+                event.preventDefault(); // Impede o recarregamento da página
 
-    form.addEventListener("submit", function (event) {
-        event.preventDefault(); // Impede o recarregamento da página
+                const formData = new FormData(form);
 
-        const formData = new FormData(form);
-
-        fetch("enviar_email.php", {
-            method: "POST",
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            const statusMensagem = document.getElementById("statusMensagem");
-            if (data.success) {
-                statusMensagem.innerHTML = `<span class="text-green-600 font-semibold">Mensagem enviada com sucesso!</span>`;
-                form.reset();
-            } else {
-                statusMensagem.innerHTML = `<span class="text-red-600 font-semibold">Erro ao enviar mensagem. Tente novamente!</span>`;
-            }
-        })
-        .catch(error => {
-            console.error("Erro:", error);
-            document.getElementById("statusMensagem").innerHTML = `<span class="text-red-600 font-semibold">Erro no servidor. Tente novamente mais tarde!</span>`;
+                fetch("./enviar_email.php", {
+                    method: "POST",
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const statusMensagem = document.getElementById("statusMensagem");
+                    if (data.success) {
+                        statusMensagem.innerHTML = `<span class="text-green-600 font-semibold">Mensagem enviada com sucesso!</span>`;
+                        form.reset();
+                    } else {
+                        statusMensagem.innerHTML = `<span class="text-red-600 font-semibold">Erro ao enviar mensagem. Tente novamente!</span>`;
+                    }
+                })
+                .catch(error => {
+                    console.error("Erro:", error);
+                    document.getElementById("statusMensagem").innerHTML = `<span class="text-red-600 font-semibold">Erro no servidor. Tente novamente mais tarde!</span>`;
+                });
+            });
         });
-    });
-});
 
+        updateCartCount();
     </script>
 </body>
 </html>
