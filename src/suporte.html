@@ -201,7 +201,7 @@
             </div>
         </div>
     </footer>
-
+    <script src="./scripts/main.js"></script>
     <script>
         let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
@@ -234,34 +234,7 @@
             createDiamond();
         }
 
-        document.addEventListener("DOMContentLoaded", function () {
-            const form = document.getElementById("formContato");
-
-            form.addEventListener("submit", function (event) {
-                event.preventDefault(); // Impede o recarregamento da página
-
-                const formData = new FormData(form);
-
-                fetch("enviar_email.php", {
-                    method: "POST",
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    const statusMensagem = document.getElementById("statusMensagem");
-                    if (data.success) {
-                        statusMensagem.innerHTML = `<span class="text-green-600 font-semibold">Mensagem enviada com sucesso!</span>`;
-                        form.reset();
-                    } else {
-                        statusMensagem.innerHTML = `<span class="text-red-600 font-semibold">Erro ao enviar mensagem. Tente novamente!</span>`;
-                    }
-                })
-                .catch(error => {
-                    console.error("Erro:", error);
-                    document.getElementById("statusMensagem").innerHTML = `<span class="text-red-600 font-semibold">Erro no servidor. Tente novamente mais tarde!</span>`;
-                });
-            });
-        });
+    
 
         // Criar novos diamantes
         setInterval(createDiamond, 1000);
