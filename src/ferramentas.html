@@ -108,44 +108,33 @@
   <body class="bg-gray-100">
     <div class="diamond-background" id="diamondContainer"></div>
     <header class="bg-white shadow-lg">
-      <div
-        class="container mx-auto px-4 py-6 flex justify-between items-center fade-in"
-      >
-      <img src="assets/logoItech.png" alt="Itech Diamond Logo" class="h-40 ml-20" onclick="location.href='index.html'" style="cursor: pointer;">
+      <div class="container mx-auto px-4 py-6 flex justify-between items-center fade-in">
+        <img src="assets/logoItech.png" alt="Itech Diamond Logo" class="h-40 ml-20" onclick="location.href='index.html'" style="cursor: pointer;">
         <nav>
           <ul class="flex space-x-12 mr-20 text-lg">
             <li>
-              <a
-                href="index.html"
-                class="text-diamond hover:text-diamond transition duration-300"
-                >Home</a
-              >
+              <a href="index.html" class="text-diamond hover:text-diamond transition duration-300">Home</a>
             </li>
             <li>
-              <a
-                href="ferramentas.html"
-                class="text-diamond hover:text-diamond transition duration-300"
-                >Ferramentas</a
-              >
+              <a href="ferramentas.html" class="text-diamond hover:text-diamond transition duration-300">Ferramentas</a>
             </li>
             <li>
-              <a
-                href="tecnologia.html"
-                class="text-diamond hover:text-diamond transition duration-300"
-                >Tecnologia</a
-              >
+              <a href="tecnologia.html" class="text-diamond hover:text-diamond transition duration-300">Tecnologia</a>
             </li>
             <li>
-              <a
-                href="suporte.html"
-                class="text-diamond hover:text-diamond transition duration-300"
-                >Suporte Técnico</a
-              >
+              <a href="suporte.html" class="text-diamond hover:text-diamond transition duration-300">Suporte Técnico</a>
+            </li>
+            <li class="relative">
+              <a href="carrinho.html" class="text-diamond px-3 hover:text-diamond transition duration-300">
+                🛒
+                <span id="cart-count" class="absolute top-0 right-0 bg-red-500 text-white rounded-full px-1 text-xs">0</span>
+              </a>
             </li>
           </ul>
         </nav>
       </div>
     </header>
+    
     <div class="diamond-background" id="diamondContainer"></div>
 
     <main class="container mx-auto px-4 py-10">
@@ -202,6 +191,23 @@
     </footer>
     <script src="scripts/main.js"></script>
     <script>
+
+      // Função para carregar itens do local storage com tratamento de erro
+      function loadCartItems() {
+        try {
+          return JSON.parse(localStorage.getItem('cartItems')) || [];
+        } catch (e) {
+          return [];
+        }
+      }
+
+      let cartItems = loadCartItems();
+
+      function addToCart(produto) {
+        cartItems.push(produto);
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        document.getElementById('cart-count').innerText = cartItems.length;
+      }
 const produtos = [
     { nome: "FRESA MD TOPO RETO 5,0X13", referencia: "UP210-S4-05013", categoria: "fresa" },
     { nome: "FRESA MD TOPO RETO 2,0X6/5", referencia: "UP210-S4-62006", categoria: "fresa" },
@@ -258,7 +264,6 @@ const produtos = [
     { nome: "PASTILHA APMT 1135PDER PM", referencia: "PAPMT1135PDER-PM-GA4", categoria: "pastilha" }
 ];
 
-// Seleciona o container onde os produtos serão adicionados
 const container = document.querySelector(".grid");
 
 // Adiciona os produtos na página
@@ -273,12 +278,12 @@ produtos.forEach((produto) => {
             <h3 class="text-xl font-semibold text-diamond mb-2">${produto.nome}</h3>
             <p class="text-gray-600 mb-2"><strong>Referência:</strong> ${produto.referencia}</p>
             <p class="text-gray-600 mb-4">Produto de alta qualidade para usinagem</p>
-            <button class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-700 transition">
+            <button class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-700 transition" onclick='addToCart(${JSON.stringify(produto)})'>
                 Adicionar ao Carrinho
             </button>
         </div>
     `;
-container.appendChild(div);
+    container.appendChild(div);
 });
 
 // Adiciona o filtro de suporte
@@ -315,32 +320,8 @@ buttons.forEach((button) => {
     });
 });
 
-function createDiamond() {
-            const diamond = document.createElement('div');
-            diamond.className = 'falling-diamond';
-            
-            const left = Math.random() * window.innerWidth;
-            diamond.style.left = `${left}px`;
-            
-            const duration = 8 + Math.random() * 7;
-            const delay = Math.random() * 5;
-            
-            diamond.style.animation = `fallAndRotate ${duration}s linear ${delay}s infinite`;
-            
-            document.getElementById('diamondContainer').appendChild(diamond);
-            
-            setTimeout(() => {
-                diamond.remove();
-            }, (duration + delay) * 1000);
-        }
 
-        // Criar 30 diamantes iniciais
-        for(let i = 0; i < 30; i++) {
-            createDiamond();
-        }
 
-        // Criar novos diamantes
-        setInterval(createDiamond, 1000);
-    </script>
-  </body>
+</script>
+</body>
 </html>

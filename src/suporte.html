@@ -73,17 +73,31 @@
     <!-- Header -->
     <header class="bg-white shadow-lg">
         <div class="container mx-auto px-4 py-6 flex justify-between items-center fade-in">
-            <img src="assets/logoItech.png" alt="Itech Diamond Logo" class="h-40 ml-20" onclick="location.href='index.html'" style="cursor: pointer;">
-            <nav>
-                <ul class="flex space-x-12 mr-20 text-lg">
-                    <li><a href="index.html" class="text-diamond hover:text-diamond transition duration-300">Home</a></li>
-                    <li><a href="ferramentas.html" class="text-diamond hover:text-diamond transition duration-300">Ferramentas</a></li>
-                    <li><a href="tecnologia.html" class="text-diamond hover:text-diamond transition duration-300">Tecnologia</a></li>
-                    <li><a href="suporte.html" class="text-diamond hover:text-diamond transition duration-300">Suporte Técnico</a></li>
-                </ul>
-            </nav>
+          <img src="assets/logoItech.png" alt="Itech Diamond Logo" class="h-40 ml-20" onclick="location.href='index.html'" style="cursor: pointer;">
+          <nav>
+            <ul class="flex space-x-12 mr-20 text-lg">
+              <li>
+                <a href="index.html" class="text-diamond hover:text-diamond transition duration-300">Home</a>
+              </li>
+              <li>
+                <a href="ferramentas.html" class="text-diamond hover:text-diamond transition duration-300">Ferramentas</a>
+              </li>
+              <li>
+                <a href="tecnologia.html" class="text-diamond hover:text-diamond transition duration-300">Tecnologia</a>
+              </li>
+              <li>
+                <a href="suporte.html" class="text-diamond hover:text-diamond transition duration-300">Suporte Técnico</a>
+              </li>
+              <li class="relative">
+                <a href="carrinho.html" class="text-diamond px-3 hover:text-diamond transition duration-300">
+                  🛒
+                  <span id="cart-count" class="absolute top-0 right-0 bg-red-500 text-white rounded-full px-1 text-xs">0</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
         </div>
-    </header>
+      </header>
 
     <main class="container mx-auto px-4 py-10">
         <!-- Hero Section -->
