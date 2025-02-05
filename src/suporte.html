@@ -65,6 +65,54 @@
         .faq-item:hover {
             transform: translateX(10px);
         }
+        @media (max-width: 768px) {
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    .text-diamond {
+        text-align: center;
+    }
+    
+    .grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .space-x-12 > * + * {
+        margin-left: 0;
+        margin-top: 1rem;
+    }
+}
+
+/* Ajustes para inputs e botões em telas pequenas */
+input, select, textarea {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+}
+
+button {
+    margin: 0.5rem;
+    white-space: nowrap;
+}
+
+/* Ajustes para cards em telas pequenas */
+.tech-card, .faq-item {
+    margin-bottom: 1rem;
+}
+
+/* Ajustes para textos responsivos */
+p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+    p {
+        font-size: 14px;
+    }
+}
     </style>
 </head>
 <body class="bg-gray-100">
@@ -72,44 +120,44 @@
     
     <!-- Header -->
     <header class="bg-white shadow-lg">
-        <div class="container mx-auto px-4 py-6 flex justify-between items-center fade-in">
-          <img src="assets/logoItech.png" alt="Itech Diamond Logo" class="h-40 ml-20" onclick="location.href='index.html'" style="cursor: pointer;">
-          <nav>
-            <ul class="flex space-x-12 mr-20 text-lg">
-              <li>
-                <a href="index.html" class="text-diamond hover:text-diamond transition duration-300">Home</a>
-              </li>
-              <li>
-                <a href="ferramentas.html" class="text-diamond hover:text-diamond transition duration-300">Ferramentas</a>
-              </li>
-              <li>
-                <a href="tecnologia.html" class="text-diamond hover:text-diamond transition duration-300">Tecnologia</a>
-              </li>
-              <li>
-                <a href="suporte.html" class="text-diamond hover:text-diamond transition duration-300">Suporte Técnico</a>
-              </li>
-              <li class="relative">
-                <a href="carrinho.html" class="text-diamond px-3 hover:text-diamond transition duration-300">
-                  🛒
-                  <span id="cart-count" class="absolute top-0 right-0 bg-red-500 text-white rounded-full px-1 text-xs">0</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
+        <div class="container mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center fade-in">
+            <img src="assets/logoItech.png" alt="Itech Diamond Logo" class="h-24 md:h-40 md:ml-20 mb-4 md:mb-0" onclick="location.href='index.html'" style="cursor: pointer;">
+            <nav class="w-full md:w-auto">
+                <ul class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-12 text-lg items-center">
+                    <li>
+                        <a href="index.html" class="text-diamond hover:text-diamond transition duration-300">Home</a>
+                    </li>
+                    <li>
+                        <a href="ferramentas.html" class="text-diamond hover:text-diamond transition duration-300">Ferramentas</a>
+                    </li>
+                    <li>
+                        <a href="tecnologia.html" class="text-diamond hover:text-diamond transition duration-300">Tecnologia</a>
+                    </li>
+                    <li>
+                        <a href="suporte.html" class="text-diamond hover:text-diamond transition duration-300">Suporte Técnico</a>
+                    </li>
+                    <li class="relative">
+                        <a href="carrinho.html" class="text-diamond px-3 hover:text-diamond transition duration-300">
+                            🛒
+                            <span id="cart-count" class="absolute top-0 right-0 bg-red-500 text-white rounded-full px-1 text-xs">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
-      </header>
+    </header>
 
     <main class="container mx-auto px-4 py-10">
         <!-- Hero Section -->
         <section class="text-center mb-12 fade-in">
-            <h1 class="text-5xl font-bold text-diamond mb-6">Suporte e Contato</h1>
+            <h1 class="text-3xl md:text-5xl font-bold text-diamond mb-6">Suporte e Contato</h1>
             <p class="text-xl text-gray-600 mt-4 max-w-3xl mx-auto">
                 Entre em contato conosco ou solicite suporte técnico especializado
             </p>
         </section>
     
         <!-- Cards de Contato -->
-        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20 fade-in">
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mb-20 fade-in">
             <div class="bg-white p-8 rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
                 <div class="text-4xl text-[#6dbdcf] mb-4">📞</div>
                 <h3 class="text-xl font-semibold mb-2">Fale Conosco</h3>

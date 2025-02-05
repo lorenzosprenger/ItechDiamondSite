@@ -65,85 +65,132 @@
         .tech-card:hover {
             transform: translateY(-10px);
         }
+        @media (max-width: 768px) {
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    .text-diamond {
+        text-align: center;
+    }
+    
+    .grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .space-x-12 > * + * {
+        margin-left: 0;
+        margin-top: 1rem;
+    }
+}
+
+/* Ajustes para inputs e botões em telas pequenas */
+input, select, textarea {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+}
+
+button {
+    margin: 0.5rem;
+    white-space: nowrap;
+}
+
+/* Ajustes para cards em telas pequenas */
+.tech-card, .faq-item {
+    margin-bottom: 1rem;
+}
+
+/* Ajustes para textos responsivos */
+p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+    p {
+        font-size: 14px;
+    }
+}
     </style>
 </head>
 <body class="bg-gray-100">
     <div class="diamond-background" id="diamondContainer"></div>
     
     <header class="bg-white shadow-lg">
-        <div class="container mx-auto px-4 py-6 flex justify-between items-center fade-in">
-          <img src="assets/logoItech.png" alt="Itech Diamond Logo" class="h-40 ml-20" onclick="location.href='index.html'" style="cursor: pointer;">
-          <nav>
-            <ul class="flex space-x-12 mr-20 text-lg">
-              <li>
-                <a href="index.html" class="text-diamond hover:text-diamond transition duration-300">Home</a>
-              </li>
-              <li>
-                <a href="ferramentas.html" class="text-diamond hover:text-diamond transition duration-300">Ferramentas</a>
-              </li>
-              <li>
-                <a href="tecnologia.html" class="text-diamond hover:text-diamond transition duration-300">Tecnologia</a>
-              </li>
-              <li>
-                <a href="suporte.html" class="text-diamond hover:text-diamond transition duration-300">Suporte Técnico</a>
-              </li>
-              <li class="relative">
-                <a href="carrinho.html" class="text-diamond px-3 hover:text-diamond transition duration-300">
-                  🛒
-                  <span id="cart-count" class="absolute top-0 right-0 bg-red-500 text-white rounded-full px-1 text-xs">0</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
+        <div class="container mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center fade-in">
+            <img src="assets/logoItech.png" alt="Itech Diamond Logo" class="h-24 md:h-40 md:ml-20 mb-4 md:mb-0" onclick="location.href='index.html'" style="cursor: pointer;">
+            <nav class="w-full md:w-auto">
+                <ul class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-12 text-lg items-center">
+                    <li>
+                        <a href="index.html" class="text-diamond hover:text-diamond transition duration-300">Home</a>
+                    </li>
+                    <li>
+                        <a href="ferramentas.html" class="text-diamond hover:text-diamond transition duration-300">Ferramentas</a>
+                    </li>
+                    <li>
+                        <a href="tecnologia.html" class="text-diamond hover:text-diamond transition duration-300">Tecnologia</a>
+                    </li>
+                    <li>
+                        <a href="suporte.html" class="text-diamond hover:text-diamond transition duration-300">Suporte Técnico</a>
+                    </li>
+                    <li class="relative">
+                        <a href="carrinho.html" class="text-diamond px-3 hover:text-diamond transition duration-300">
+                            🛒
+                            <span id="cart-count" class="absolute top-0 right-0 bg-red-500 text-white rounded-full px-1 text-xs">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
-      </header>
+    </header>
 
     <main class="container mx-auto px-4 py-10">
         <!-- Hero Section -->
-<section class="text-center mb-12 fade-in">
-    <h1 class="text-5xl font-bold text-diamond mb-6">Nossa Tecnologia</h1>
-    <p class="text-xl text-gray-600 mt-4 max-w-3xl mx-auto">
-        Excelência em ferramentas de metal duro e aços especiais
-    </p>
-</section>
+        <section class="text-center mb-12 fade-in">
+            <h1 class="text-3xl md:text-5xl font-bold text-diamond mb-6">Nossa Tecnologia</h1>
+            <p class="text-xl text-gray-600 mt-4 max-w-3xl mx-auto">
+                Excelência em ferramentas de metal duro e aços especiais
+            </p>
+        </section>
 
-<!-- Tecnologia Principal -->
-<section class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20 items-center fade-in">
-    <div class="space-y-6">
-        <h2 class="text-3xl font-bold text-diamond">Tecnologia de Ponta</h2>
-        <p class="text-gray-600 leading-relaxed">
-            Utilizamos materiais de alta qualidade como metal duro, aço inox e alumínio, 
-            garantindo precisão excepcional e durabilidade superior em todas as nossas ferramentas. 
-            Nossa experiência nos permite desenvolver soluções específicas para cada necessidade.
-        </p>
-        <ul class="space-y-4">
-            <li class="flex items-center">
-                <svg class="w-6 h-6 text-diamond mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
-                </svg>
-                Metal duro de alta performance
-            </li>
-            <li class="flex items-center">
-                <svg class="w-6 h-6 text-diamond mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
-                </svg>
-                Aços especiais selecionados
-            </li>
-            <li class="flex items-center">
-                <svg class="w-6 h-6 text-diamond mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
-                </svg>
-                Controle dimensional rigoroso
-            </li>
-        </ul>
-    </div>
-</section>
+        <!-- Tecnologia Principal -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-20 items-center fade-in">
+            <div class="space-y-6">
+                <h2 class="text-3xl font-bold text-diamond">Tecnologia de Ponta</h2>
+                <p class="text-gray-600 leading-relaxed">
+                    Utilizamos materiais de alta qualidade como metal duro, aço inox e alumínio, 
+                    garantindo precisão excepcional e durabilidade superior em todas as nossas ferramentas. 
+                    Nossa experiência nos permite desenvolver soluções específicas para cada necessidade.
+                </p>
+                <ul class="space-y-4">
+                    <li class="flex items-center">
+                        <svg class="w-6 h-6 text-diamond mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                        </svg>
+                        Metal duro de alta performance
+                    </li>
+                    <li class="flex items-center">
+                        <svg class="w-6 h-6 text-diamond mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                        </svg>
+                        Aços especiais selecionados
+                    </li>
+                    <li class="flex items-center">
+                        <svg class="w-6 h-6 text-diamond mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                        </svg>
+                        Controle dimensional rigoroso
+                    </li>
+                </ul>
+            </div>
+        </section>
 
         <!-- Cards de Tecnologia -->
         <section class="mb-20 fade-in">
-            <h2 class="text-4xl font-bold text-diamond text-center mb-12">Nossas Inovações</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-
+            <h2 class="text-2xl md:text-4xl font-bold text-diamond text-center mb-12">Nossas Inovações</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
                 <div class="tech-card bg-white p-8 rounded-lg shadow-lg">
                     <div class="text-4xl text-[#6dbdcf] mb-4">🔍</div>
                     <h3 class="text-xl font-semibold mb-2">Precisão Absoluta</h3>
@@ -159,45 +206,43 @@
         </section>
 
         <!-- Seção de Produtos e Tecnologias -->
-<section class="mb-20 fade-in">
-    <h2 class="text-4xl font-bold text-diamond text-center mb-12">Tecnologia e Qualidade</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="bg-white p-6 rounded-lg shadow-lg text-center transform hover:scale-105 transition duration-300">
-            <div class="text-4xl text-[#6dbdcf] mb-4">🔧</div>
-            <h3 class="text-xl font-semibold mb-3">Produtos GESAC</h3>
-            <p class="text-gray-600 mb-4">Distribuidor oficial de ferramentas GESAC, garantindo qualidade e procedência.</p>
-            <ul class="text-left text-sm text-gray-500 space-y-2 pl-4">
-                <li>• Metal duro importado</li>
-                <li>• Aços especiais certificados</li>
-                <li>• Garantia de fábrica</li>
-            </ul>
-        </div>
+        <section class="mb-20 fade-in">
+            <h2 class="text-4xl font-bold text-diamond text-center mb-12">Tecnologia e Qualidade</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center transform hover:scale-105 transition duration-300">
+                    <div class="text-4xl text-[#6dbdcf] mb-4">🔧</div>
+                    <h3 class="text-xl font-semibold mb-3">Produtos GESAC</h3>
+                    <p class="text-gray-600 mb-4">Distribuidor oficial de ferramentas GESAC, garantindo qualidade e procedência.</p>
+                    <ul class="text-left text-sm text-gray-500 space-y-2 pl-4">
+                        <li>• Metal duro importado</li>
+                        <li>• Aços especiais certificados</li>
+                        <li>• Garantia de fábrica</li>
+                    </ul>
+                </div>
 
-        <div class="bg-white p-6 rounded-lg shadow-lg text-center transform hover:scale-105 transition duration-300">
-            <div class="text-4xl text-[#6dbdcf] mb-4">📊</div>
-            <h3 class="text-xl font-semibold mb-3">Suporte Técnico</h3>
-            <p class="text-gray-600 mb-4">Assistência especializada na escolha e aplicação das ferramentas.</p>
-            <ul class="text-left text-sm text-gray-500 space-y-2 pl-4">
-                <li>• Consultoria técnica</li>
-                <li>• Seleção adequada</li>
-                <li>• Otimização de processos</li>
-            </ul>
-        </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center transform hover:scale-105 transition duration-300">
+                    <div class="text-4xl text-[#6dbdcf] mb-4">📊</div>
+                    <h3 class="text-xl font-semibold mb-3">Suporte Técnico</h3>
+                    <p class="text-gray-600 mb-4">Assistência especializada na escolha e aplicação das ferramentas.</p>
+                    <ul class="text-left text-sm text-gray-500 space-y-2 pl-4">
+                        <li>• Consultoria técnica</li>
+                        <li>• Seleção adequada</li>
+                        <li>• Otimização de processos</li>
+                    </ul>
+                </div>
 
-        <div class="bg-white p-6 rounded-lg shadow-lg text-center transform hover:scale-105 transition duration-300">
-            <div class="text-4xl text-[#6dbdcf] mb-4">🚚</div>
-            <h3 class="text-xl font-semibold mb-3">Pronta Entrega</h3>
-            <p class="text-gray-600 mb-4">Estoque estratégico para atendimento imediato.</p>
-            <ul class="text-left text-sm text-gray-500 space-y-2 pl-4">
-                <li>• Disponibilidade imediata</li>
-                <li>• Entrega rápida</li>
-                <li>• Produtos em estoque</li>
-            </ul>
-        </div>
-    </div>
-</section>
-
-
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center transform hover:scale-105 transition duration-300">
+                    <div class="text-4xl text-[#6dbdcf] mb-4">🚚</div>
+                    <h3 class="text-xl font-semibold mb-3">Pronta Entrega</h3>
+                    <p class="text-gray-600 mb-4">Estoque estratégico para atendimento imediato.</p>
+                    <ul class="text-left text-sm text-gray-500 space-y-2 pl-4">
+                        <li>• Disponibilidade imediata</li>
+                        <li>• Entrega rápida</li>
+                        <li>• Produtos em estoque</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer class="bg-white shadow-lg mt-12 fade-in">
