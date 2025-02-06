@@ -6,12 +6,31 @@ document.getElementById('closeModal').addEventListener('click', function() {
     document.getElementById('orcamentoModal').style.display = 'none';
 });
 
+function validateForm(userName) {
+    // Limitar tamanho do nome
+    if (userName.length > 100) {
+        alert('Nome muito longo');
+        return false;
+    }
+    
+    // Remover caracteres especiais
+    if (/[<>{}()$]/.test(userName)) {
+        alert('Nome contém caracteres inválidos');
+        return false;
+    }
+    
+    return true;
+}
+
 function generateMessage(userName) {
-    if (!userName) {
-        alert('Por favor, insira seu nome.');
+    if (!userName || !validateForm(userName)) {
+        alert('Por favor, insira um nome válido.');
         return;
     }
-
+    
+    // Sanitizar nome do usuário
+    userName = sanitizeInput(userName);
+    
     let itemsText = '';
     const groupedItems = cartItems.reduce((acc, item) => {
         const key = `${item.nome}-${item.referencia}`;

@@ -23,9 +23,12 @@ jspm_packages/
 
 # dotenv environment variables file
 .env
+.env.local
+.env.*.local
 
 # MacOS files
 .DS_Store
+Thumbs.db
 
 # IDE files
 .idea/
@@ -34,3 +37,7 @@ jspm_packages/
 *.ntvs*
 *.njsproj
 *.sln
+
+# Build
+dist/
+build/

@@ -1,5 +1,44 @@
+// Gerar token CSRF
+function generateCSRFToken() {
+    return Math.random().toString(36).substring(2) + Date.now().toString(36);
+}
+
+const contactAttempts = {
+    count: 0,
+    lastAttempt: 0
+};
+
+// Adicionar token aos formulários
 document.addEventListener('DOMContentLoaded', () => {
+    const forms = document.querySelectorAll('form');
+    const csrfToken = generateCSRFToken();
+    
+    forms.forEach(form => {
+        const tokenInput = document.createElement('input');
+        tokenInput.type = 'hidden';
+        tokenInput.name = 'csrf_token';
+        tokenInput.value = csrfToken;
+        form.appendChild(tokenInput);
+    });
+
     document.querySelector('#formContato').addEventListener('submit', function(e) {
+        const now = Date.now();
+        
+        // Reset contador após 1 hora
+        if (now - contactAttempts.lastAttempt > 3600000) {
+            contactAttempts.count = 0;
+        }
+        
+        // Limitar a 5 tentativas por hora
+        if (contactAttempts.count >= 5) {
+            e.preventDefault();
+            alert('Muitas tentativas. Tente novamente mais tarde.');
+            return;
+        }
+        
+        contactAttempts.count++;
+        contactAttempts.lastAttempt = now;
+        
         e.preventDefault();
         
         const nome = document.querySelector('[name="nome"]').value;

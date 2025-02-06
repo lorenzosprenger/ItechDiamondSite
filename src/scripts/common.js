@@ -14,9 +14,16 @@ function loadCartItems() {
 
 function saveCartItems() {
     try {
+        // Adicionar verificação de tamanho máximo
+        if (JSON.stringify(cartItems).length > 5000000) { // 5MB limit
+            console.error('Carrinho muito grande');
+            return false;
+        }
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        return true;
     } catch (e) {
         console.error('Erro ao salvar carrinho:', e);
+        return false;
     }
 }
 
@@ -27,8 +34,30 @@ function updateCartCount() {
     }
 }
 
+// Adicionar função de sanitização
+function sanitizeInput(input) {
+    return input.replace(/[&<>"']/g, function(match) {
+        const char_map = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;'
+        };
+        return char_map[match];
+    });
+}
+
+// Modificar a função addToCart
 function addToCart(produto) {
-    cartItems.push(produto);
+    // Sanitizar dados do produto
+    const sanitizedProduto = {
+        nome: sanitizeInput(produto.nome),
+        referencia: sanitizeInput(produto.referencia),
+        categoria: sanitizeInput(produto.categoria)
+    };
+    
+    cartItems.push(sanitizedProduto);
     saveCartItems();
     updateCartCount();
 }

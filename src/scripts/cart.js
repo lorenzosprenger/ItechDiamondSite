@@ -14,13 +14,20 @@ function renderCartItems() {
     }, {});
 
     Object.values(groupedItems).forEach((item, index) => {
+        // Remover informações sensíveis antes de renderizar
+        const safeItem = {
+            nome: item.nome,
+            referencia: item.referencia,
+            quantidade: item.quantidade
+        };
+        
         const div = document.createElement('div');
         div.className = 'produto bg-white rounded-lg shadow-lg overflow-hidden';
         div.innerHTML = `
             <div class="p-6">
-                <h3 class="text-xl font-semibold text-diamond mb-2 item-name">${item.nome}</h3>
-                <p class="text-gray-600 mb-2"><strong>Referência:</strong> ${item.referencia}</p>
-                <p class="text-gray-600 mb-2 item-quantity">Quantidade: ${item.quantidade}</p>
+                <h3 class="text-xl font-semibold text-diamond mb-2 item-name">${safeItem.nome}</h3>
+                <p class="text-gray-600 mb-2"><strong>Referência:</strong> ${safeItem.referencia}</p>
+                <p class="text-gray-600 mb-2 item-quantity">Quantidade: ${safeItem.quantidade}</p>
                 <button class="remove-item bg-red-500 text-white py-1 px-2 rounded hover:bg-red-700" data-index="${index}">Remover</button>
             </div>
         `;

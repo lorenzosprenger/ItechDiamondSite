@@ -1,0 +1,11 @@
+# Proteção contra MIME-type sniffing
+Header set X-Content-Type-Options "nosniff"
+
+# Proteção XSS
+Header set X-XSS-Protection "1; mode=block"
+
+# Política de frames
+Header set X-Frame-Options "SAMEORIGIN"
+
+# Content Security Policy
+Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com;" 
