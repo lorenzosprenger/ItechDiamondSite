@@ -7,101 +7,9 @@
     <link rel="stylesheet" href="styles/output.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="./assets/DIAMANTE.png" type="image/x-icon">
-    <style>
-        :root {
-            --diamond-color: #6dbdcf;
-            --diamond-hover: #5aa8b9;
-        }
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-        .text-diamond {
-            color: var(--diamond-color);
-        }
-        .hover\:text-diamond:hover {
-            color: var(--diamond-hover);
-        }
-        .fade-in {
-            animation: fadeIn 2s ease-in-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        .diamond-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
+    <link rel="stylesheet" href="styles/common.css">
 
-        .falling-diamond {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background-image: url('assets/diamante.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            opacity: 0.3;
-        }
-
-        @keyframes fallAndRotate {
-            0% {
-                transform: translateY(-10vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.3;
-            }
-            100% {
-                transform: translateY(110vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        @media (max-width: 768px) {
-    .container {
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
     
-    .text-diamond {
-        text-align: center;
-    }
-    
-    .grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .space-x-12 > * + * {
-        margin-left: 0;
-        margin-top: 1rem;
-    }
-}
-
-/* Ajustes para o modal no carrinho */
-.modal-content {
-    width: 90%;
-    max-width: 500px;
-    margin: 1rem;
-    padding: 1.5rem;
-}
-
-/* Ajustes para inputs e botões em telas pequenas */
-input, select, textarea {
-    width: 100%;
-    max-width: 100%;
-    margin-bottom: 1rem;
-}
-
-button {
-    margin: 0.5rem;
-    white-space: nowrap;
-}
-    </style>
 </head>
 <body class="bg-gray-100">
     <div class="diamond-background" id="diamondContainer"></div>
@@ -241,43 +149,7 @@ button {
             </div>
         </div>
     </footer>
+    <script src="scripts/common.js"></script>
     <script src="scripts/main.js"></script>
-    <script>
-        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-
-        function updateCartCount() {
-            document.getElementById('cart-count').innerText = cartItems.length;
-        }
-
-        function createDiamond() {
-            const diamond = document.createElement('div');
-            diamond.className = 'falling-diamond';
-            
-            // Posição horizontal mais distribuída
-            const left = Math.random() * window.innerWidth;
-            diamond.style.left = `${left}px`;
-            
-            // Duração e delay mais variados
-            const duration = 8 + Math.random() * 7; // Aumentado para cair mais devagar
-            const delay = Math.random() * 5;
-            
-            diamond.style.animation = `fallAndRotate ${duration}s linear ${delay}s infinite`;
-            
-            document.getElementById('diamondContainer').appendChild(diamond);
-            
-            setTimeout(() => {
-                diamond.remove();
-            }, (duration + delay) * 1000);
-        }
-
-        // Criar 30 diamantes iniciais (dobro do anterior)
-        for(let i = 0; i < 30; i++) {
-            createDiamond();
-        }
-
-        
-
-        updateCartCount();
-    </script>
 </body>
 </html>
