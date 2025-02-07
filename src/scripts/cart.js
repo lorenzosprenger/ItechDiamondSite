@@ -43,8 +43,25 @@ function renderCartItems() {
     });
 }
 
+function removeCartItem(index) {
+    cartItems.splice(index, 1);
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    updateCartCount();
+    renderCartItems();
+}
+
+function clearCart() {
+    cartItems = [];
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    updateCartCount();
+    renderCartItems();
+}
+
 // Inicialização específica do carrinho
 document.addEventListener('DOMContentLoaded', () => {
+    // Carregar itens do carrinho
+    cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    updateCartCount();
     renderCartItems();
     
     // Setup do modal de orçamento
@@ -63,16 +80,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (modal) modal.style.display = 'none';
         });
     }
-}); 
 
-function removeCartItem(index) {
-    cartItems.splice(index, 1);
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-    renderCartItems();
-}
-
-function clearCart() {
-    cartItems = [];
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-    renderCartItems();
-}
+    // Adicionar evento ao botão de limpar carrinho se existir
+    const clearCartBtn = document.getElementById('clearCartBtn');
+    if (clearCartBtn) {
+        clearCartBtn.addEventListener('click', clearCart);
+    }
+});
