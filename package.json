@@ -9,7 +9,7 @@
     "start": "node src/server.js",
     "vercel-build": "npm run build"
   },
-  "author": "Seu Nome",
+  "author": "Lorenzo Sprenger",
   "license": "MIT",
   "dependencies": {
     "@vercel/speed-insights": "^1.1.0",
@@ -27,6 +27,17 @@
   "keywords": [
     "e-commerce",
     "landing page",
-    "tailwindcss"
+    "tailwindcss",
+    "itech diamond",
+    "ferramentas",
+    "suporte",
+    "tecnologia",
+    "usinagem",
+    "usinagem de metais",
+    "usinagem de aço",
+    "usinagem de alumínio",
+    "usinagem de cobre",
+    "usinagem de aço inox"
+    
   ]
 }
