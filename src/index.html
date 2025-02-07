@@ -151,5 +151,14 @@
     </footer>
     <script src="scripts/common.js"></script>
     <script src="scripts/main.js"></script>
+    <script>
+        window.addEventListener('load', () => {
+            if (window.location.hostname !== 'localhost') {
+                const script = document.createElement('script')
+                script.src = '/_vercel/speed-insights/script.js'
+                document.head.appendChild(script)
+            }
+        })
+    </script>
 </body>
 </html>

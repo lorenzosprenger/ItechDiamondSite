@@ -18,5 +18,8 @@
     "DB_PASSWORD": "@db_password",
     "DB_NAME": "@db_name",
     "NODE_ENV": "production"
+  },
+  "framework": {
+    "version": 2
   }
 } 
