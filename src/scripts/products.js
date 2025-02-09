@@ -9,7 +9,7 @@ filtroContainer.appendChild(btnSuporte);
 // Função para carregar produtos da API
 async function loadProdutos() {
     try {
-        // URL base dinâmica baseada no ambiente
+        console.log('Iniciando carregamento de produtos...');
         const baseUrl = window.location.origin;
         const response = await fetch(`${baseUrl}/api/produtos`);
         console.log('Response status:', response.status);
@@ -19,7 +19,6 @@ async function loadProdutos() {
         }
         
         const produtos = await response.json();
-        console.log('Produtos carregados:', produtos.length);
         renderProdutos(produtos);
     } catch (error) {
         console.error('Erro ao carregar produtos:', error);

@@ -11,7 +11,7 @@ app.use(helmet());
 
 app.use(cors({
     origin: process.env.NODE_ENV === 'production' 
-        ? ['https://seu-dominio-vercel.vercel.app', 'https://seu-dominio-customizado.com']
+        ? ['https://itech-diamond-git-main-lorenzosprengers-projects.vercel.app', 'https://itech-diamond.vercel.app']
         : 'http://localhost:3000',
     credentials: true
 }));
@@ -27,13 +27,16 @@ app.use(express.static('src')); // Serve arquivos estáticos da pasta src
 
 // Criar pool de conexões MySQL com configurações mais detalhadas
 const pool = mysql.createPool({
-    host: process.env.DB_HOST || 'localhost',
-    user: process.env.DB_USER || 'root',
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME || 'ItechDiamond',
+    database: process.env.DB_NAME,
     waitForConnections: true,
     connectionLimit: 10,
-    queueLimit: 0
+    queueLimit: 0,
+    ssl: {
+        rejectUnauthorized: false
+    }
 });
 
 // Teste de conexão ao iniciar o servidor
@@ -53,15 +56,19 @@ app.get('/api/produtos', async (req, res) => {
         console.log('Produtos encontrados:', rows.length);
         res.json(rows);
     } catch (error) {
-        console.error('Erro detalhado:', error);
+        console.error('Erro ao buscar produtos:', error);
         res.status(500).json({ 
             error: 'Erro ao buscar produtos',
-            details: error.message,
-            code: error.code
+            details: error.message
         });
     }
 });
 
-app.listen(port, () => {
-    console.log(`Servidor rodando na porta ${port}`);
-}); 
+module.exports = app;
+
+// Só inicia o servidor se não estiver no Vercel
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(port, () => {
+        console.log(`Servidor rodando na porta ${port}`);
+    });
+} 
