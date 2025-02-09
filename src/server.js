@@ -12,9 +12,7 @@ const port = process.env.PORT || 3000;
 // Segurança
 app.use(helmet());
 app.use(cors({
-    origin: process.env.NODE_ENV === 'production' 
-        ? ['https://itech-diamond-git-main-lorenzosprengers-projects.vercel.app', 'https://itech-diamond.vercel.app']
-        : 'http://localhost:3000',
+    origin: ['https://itech-diamond.vercel.app', 'http://localhost:3000'],
     credentials: true
 }));
 
@@ -27,6 +25,11 @@ app.use('/api/', rateLimit({
 app.use(express.json());
 app.use(express.static('src'));
 
+// Rota para testar conexão
+app.get('/api/test', (req, res) => {
+    res.json({ status: 'API está funcionando!' });
+});
+
 // Rota para buscar produtos
 app.get('/api/produtos', async (req, res) => {
     try {
@@ -34,13 +37,17 @@ app.get('/api/produtos', async (req, res) => {
         console.log(`Produtos encontrados: ${rows.length}`);
         res.json(rows);
     } catch (error) {
-        console.error('Erro detalhado:', error);
+        console.error('Erro ao buscar produtos:', error);
         res.status(500).json({ 
             error: 'Erro ao buscar produtos',
-            details: error.message,
-            code: error.code
+            details: error.message
         });
     }
+});
+
+// Teste de rota para garantir que o backend está funcionando no Vercel
+app.get('/', (req, res) => {
+    res.send('🚀 Backend está rodando!');
 });
 
 app.listen(port, () => {
