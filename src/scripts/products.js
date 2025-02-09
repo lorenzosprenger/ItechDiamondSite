@@ -11,21 +11,28 @@ filtroContainer.appendChild(btnSuporte);
 async function loadProdutos() {
     try {
         console.log('Iniciando carregamento de produtos...');
-        const baseUrl = window.location.origin;
+
+        // Verifica se está rodando no Vercel ou localmente
+        const baseUrl = window.location.hostname.includes("localhost")
+            ? "http://localhost:3000"
+            : "https://itech-diamond.vercel.app";
+
         console.log('URL base:', baseUrl);
+
         const response = await fetch(`${baseUrl}/api/produtos`);
         console.log('Response status:', response.status);
-        
+
         if (!response.ok) {
-            throw new Error('Erro ao carregar produtos');
+            throw new Error(`Erro ao carregar produtos: ${response.statusText}`);
         }
-        
+
         const produtos = await response.json();
         renderProdutos(produtos);
     } catch (error) {
         console.error('Erro ao carregar produtos:', error);
     }
 }
+
 
 // Função para renderizar produtos na página
 function renderProdutos(produtos) {
