@@ -4,22 +4,24 @@ let cartItems = [];
 // Gerenciamento do Carrinho
 function loadCartItems() {
     try {
-        cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-        return cartItems;
+        const storedItems = localStorage.getItem('cartItems');
+        cartItems = storedItems ? JSON.parse(storedItems) : [];
+        console.log('Carrinho carregado:', cartItems);
     } catch (e) {
         console.error('Erro ao carregar carrinho:', e);
-        return [];
+        cartItems = [];
     }
 }
 
 function saveCartItems() {
     try {
-        // Adicionar verificação de tamanho máximo
+        // Verificação de tamanho máximo para evitar erros
         if (JSON.stringify(cartItems).length > 5000000) { // 5MB limit
             console.error('Carrinho muito grande');
             return false;
         }
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        console.log('Carrinho salvo com sucesso:', cartItems);
         return true;
     } catch (e) {
         console.error('Erro ao salvar carrinho:', e);
@@ -34,89 +36,55 @@ function updateCartCount() {
     }
 }
 
-// Adicionar função de sanitização
+// Função para sanitizar entrada
 function sanitizeInput(input) {
-    return input.replace(/[&<>"']/g, function(match) {
-        const char_map = {
-            '&': '&amp;',
-            '<': '&lt;',
-            '>': '&gt;',
-            '"': '&quot;',
-            "'": '&#39;'
-        };
-        return char_map[match];
-    });
+    const div = document.createElement('div');
+    div.textContent = input;
+    return div.innerHTML;
 }
 
-// Modificar a função addToCart
+// Modificação da função `addToCart`
 function addToCart(produto) {
-    // Sanitizar dados do produto
+    if (!produto || !produto.nome || !produto.referencia) {
+        console.error('Produto inválido:', produto);
+        return;
+    }
+
+    console.log('Adicionando ao carrinho:', produto);
+
+    // Sanitiza os dados do produto
     const sanitizedProduto = {
         nome: sanitizeInput(produto.nome),
         referencia: sanitizeInput(produto.referencia),
-        categoria: sanitizeInput(produto.categoria)
+        categoria: sanitizeInput(produto.categoria),
     };
-    
+
     cartItems.push(sanitizedProduto);
     saveCartItems();
     updateCartCount();
 }
 
-function clearCart() {
-    cartItems = [];
-    saveCartItems();
-    updateCartCount();
+// Garante que o botão "Limpar Carrinho" funcione corretamente
+const clearCartBtn = document.getElementById("clearCartBtn");
+if (clearCartBtn) {
+    clearCartBtn.addEventListener("click", () => {
+        console.log("Botão 'Limpar Carrinho' clicado!");
+        clearCart(); // Chama a função corretamente
+    });
 }
 
-// Animação dos Diamantes
-function createDiamond() {
-    const container = document.getElementById('diamondContainer');
-    if (!container) return;
 
-    const diamond = document.createElement('div');
-    diamond.className = 'falling-diamond';
-    
-    const left = Math.random() * window.innerWidth;
-    diamond.style.left = `${left}px`;
-    
-    const duration = 8 + Math.random() * 7;
-    const delay = Math.random() * 5;
-    
-    diamond.style.animation = `fallAndRotate ${duration}s linear ${delay}s infinite`;
-    
-    container.appendChild(diamond);
-    
-    setTimeout(() => {
-        diamond.remove();
-    }, (duration + delay) * 1000);
-}
 
-function initializeDiamonds() {
-    const container = document.getElementById('diamondContainer');
-    if (!container) return;
 
-    // Limpa diamantes existentes
-    container.innerHTML = '';
-
-    // Cria novos diamantes
-    for(let i = 0; i < 30; i++) {
-        createDiamond();
-    }
-    
-    // Continua criando diamantes periodicamente
-    setInterval(createDiamond, 1000);
-}
-
-// Inicialização
+// Inicialização ao carregar a página
 document.addEventListener('DOMContentLoaded', () => {
     loadCartItems();
     updateCartCount();
-    initializeDiamonds();
 });
 
-// Exporta funções para uso global
+// Exporta funções globalmente para o `products.js`
 window.addToCart = addToCart;
 window.clearCart = clearCart;
 window.updateCartCount = updateCartCount;
+window.loadCartItems = loadCartItems;
 window.cartItems = cartItems;
-

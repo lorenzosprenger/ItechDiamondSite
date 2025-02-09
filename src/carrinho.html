@@ -51,7 +51,7 @@
                 <button id="solicitarOrcamentoBtn" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700">
                     Solicitar Orçamento
                 </button>
-                <button class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-700" onclick="clearCart()">
+                <button id="clearCartBtn" class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-700" onclick="clearCart()">
                     Limpar Carrinho
                 </button>
             </div>
@@ -79,15 +79,6 @@
     <script src="scripts/common.js"></script>
     <script src="scripts/cart.js"></script>
     <script src="scripts/mensagens.js"></script>
-    <script>
-        window.addEventListener('load', () => {
-            if (window.location.hostname !== 'localhost') {
-                const script = document.createElement('script')
-                script.src = '/_vercel/speed-insights/script.js'
-                document.head.appendChild(script)
-            }
-        })
-    </script>
     <!-- Analytics -->
     <script>
         window.addEventListener('load', () => {

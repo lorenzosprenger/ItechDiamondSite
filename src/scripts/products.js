@@ -6,11 +6,13 @@ btnSuporte.className = "filter-btn px-6 py-2 bg-white text-diamond rounded-full 
 btnSuporte.innerText = "Suporte";
 filtroContainer.appendChild(btnSuporte);
 
+
 // Função para carregar produtos da API
 async function loadProdutos() {
     try {
         console.log('Iniciando carregamento de produtos...');
         const baseUrl = window.location.origin;
+        console.log('URL base:', baseUrl);
         const response = await fetch(`${baseUrl}/api/produtos`);
         console.log('Response status:', response.status);
         
@@ -27,7 +29,7 @@ async function loadProdutos() {
 
 // Função para renderizar produtos na página
 function renderProdutos(produtos) {
-const container = document.querySelector(".grid");
+    const container = document.querySelector(".grid");
     if (!container) {
         console.error('Container .grid não encontrado');
         return;
@@ -36,28 +38,46 @@ const container = document.querySelector(".grid");
     console.log('Renderizando produtos:', produtos.length);
     container.innerHTML = ''; // Limpa o container
 
-produtos.forEach((produto) => {
-        // Sanitizar dados antes de renderizar
-        const sanitizedProduto = {
-            nome: DOMPurify.sanitize(produto.nome),
-            referencia: DOMPurify.sanitize(produto.referencia),
-            categoria: DOMPurify.sanitize(produto.categoria)
+    produtos.forEach((produto) => {
+        if (!produto || !produto.nome) {
+            console.error('Produto inválido:', produto);
+            return;
+        }
+
+        // Sanitiza os dados
+        const sanitize = (str) => {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
         };
-        
+
+        const sanitizedProduto = {
+            nome: sanitize(produto.nome),
+            referencia: sanitize(produto.referencia),
+            categoria: sanitize(produto.categoria),
+        };
+
         const div = document.createElement("div");
         div.className = `produto ${sanitizedProduto.categoria} bg-white rounded-lg shadow-lg overflow-hidden`;
         div.innerHTML = `
-        <div class="p-6">
+            <div class="p-6">
                 <h3 class="text-xl font-semibold text-diamond mb-2">${sanitizedProduto.nome}</h3>
                 <p class="text-gray-600 mb-2"><strong>Referência:</strong> ${sanitizedProduto.referencia}</p>
-            <p class="text-gray-600 mb-4">Produto de alta qualidade para usinagem</p>
-            <button class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-700 transition" onclick='addToCart(${JSON.stringify(produto)})'>
-                Adicionar ao Carrinho
-            </button>
-        </div>
-    `;
-    container.appendChild(div);
-});
+                <p class="text-gray-600 mb-4">Produto de alta qualidade para usinagem</p>
+                <button class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-700 transition" data-produto='${JSON.stringify(sanitizedProduto)}'>
+                    Adicionar ao Carrinho
+                </button>
+            </div>
+        `;
+
+        // Adiciona o evento de clique para o botão dinamicamente
+        const button = div.querySelector("button");
+        button.addEventListener("click", () => {
+            addToCart(sanitizedProduto);
+        });
+
+        container.appendChild(div);
+    });
 
     setupFiltros();
 }
