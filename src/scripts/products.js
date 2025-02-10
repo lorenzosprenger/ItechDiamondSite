@@ -10,20 +10,32 @@ filtroContainer.appendChild(btnSuporte);
 // Função para carregar produtos da API
 async function loadProdutos() {
     try {
-        console.log('Iniciando carregamento de produtos...');
-        const baseUrl = window.location.origin;
-        console.log('URL base:', baseUrl);
-        const response = await fetch(`${baseUrl}/api/produtos`);
-        console.log('Response status:', response.status);
-        
+        const response = await fetch('/api/produtos');
         if (!response.ok) {
-            throw new Error('Erro ao carregar produtos');
+            const errorText = await response.text();
+            console.error('Erro na resposta:', {
+                status: response.status,
+                text: errorText
+            });
+            throw new Error(`Erro ao carregar produtos: ${response.status}`);
         }
-        
         const produtos = await response.json();
         renderProdutos(produtos);
     } catch (error) {
         console.error('Erro ao carregar produtos:', error);
+        // Mostrar produtos mock em caso de erro
+        renderProdutos([
+            {
+                nome: "Fresa de Topo",
+                referencia: "FT-001",
+                categoria: "fresa"
+            },
+            {
+                nome: "Broca Helicoidal",
+                referencia: "BH-001",
+                categoria: "broca"
+            }
+        ]);
     }
 }
 

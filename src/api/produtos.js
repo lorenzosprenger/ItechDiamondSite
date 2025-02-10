@@ -1,6 +1,9 @@
+// No topo de produtos.js
+console.log('Rota /api/produtos carregada');
 const mysql = require('mysql2/promise');
 require('dotenv').config();
-
+// No topo de produtos.js
+console.log('Rota /api/produtos carregada');
 console.log('Iniciando configuração do banco de dados...');
 console.log('Variáveis de ambiente carregadas:', {
     host: process.env.DB_HOST,
@@ -46,37 +49,16 @@ async function testConnection() {
         return false;
     }
 }
-
 module.exports = async (req, res) => {
-    console.log('Handler de produtos executado');
-    try {
-        const mockProdutos = [
-            {
-                id: 1,
-                nome: "Fresa de Topo",
-                referencia: "FT-001",
-                categoria: "fresa"
-            },
-            {
-                id: 2,
-                nome: "Broca Helicoidal",
-                referencia: "BH-001",
-                categoria: "broca"
-            }
-        ];
+    if (req.method !== 'GET') {
+        return res.status(405).json({ error: 'Método não permitido' });
+    }
 
-        try {
-            console.log('Tentando conectar ao banco de dados...');
-            const [rows] = await pool.query('SELECT * FROM produtos');
-            console.log('Dados recuperados do banco:', rows);
-            res.json(rows);
-        } catch (dbError) {
-            console.error('Erro ao acessar banco de dados:', dbError);
-            console.log('Retornando dados mock');
-            res.json(mockProdutos);
-        }
+    try {
+        const [rows] = await pool.query('SELECT * FROM produtos');
+        res.status(200).json(rows);
     } catch (error) {
-        console.error('Erro no handler de produtos:', error);
+        console.error('Erro ao buscar produtos:', error);
         res.status(500).json({ error: 'Erro ao buscar produtos' });
     }
 };
