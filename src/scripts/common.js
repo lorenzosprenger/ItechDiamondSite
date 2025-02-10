@@ -73,8 +73,10 @@ if (clearCartBtn) {
     });
 }
 
-
-
+function clearCart() {
+    // Lógica para limpar o carrinho
+    console.log('Carrinho limpo');
+}
 
 // Inicialização ao carregar a página
 document.addEventListener('DOMContentLoaded', () => {
