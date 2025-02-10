@@ -1,6 +1,34 @@
 function renderCartItems() {
     const cartContainer = document.getElementById('cart-items');
+    const solicitarBtn = document.getElementById('solicitarOrcamentoBtn');
+    const clearCartBtn = document.getElementById('clearCartBtn');
+    
     if (!cartContainer) return;
+    
+    // Verifica se o carrinho está vazio
+    if (!cartItems || cartItems.length === 0) {
+        cartContainer.innerHTML = `
+            <div class="col-span-3 text-center py-8">
+                <div class="text-4xl mb-4">🛒</div>
+                <h3 class="text-2xl font-semibold text-gray-600 mb-4">Seu carrinho está vazio</h3>
+                <p class="text-gray-500 mb-8">Adicione alguns produtos para solicitar um orçamento.</p>
+                <div class="mt-8">
+                    <a href="ferramentas.html" class="border-2 border-gray-600 text-gray-600 px-8 py-3 rounded-full hover:bg-gray-700 hover:text-white transition transform hover:scale-105 font-semibold">
+                        Ver Produtos
+                    </a>
+                </div>
+            </div>
+        `;
+        
+        // Esconde os botões quando o carrinho está vazio
+        if (solicitarBtn) solicitarBtn.style.display = 'none';
+        if (clearCartBtn) clearCartBtn.style.display = 'none';
+        return;
+    }
+    
+    // Mostra os botões quando há itens no carrinho
+    if (solicitarBtn) solicitarBtn.style.display = 'inline-block';
+    if (clearCartBtn) clearCartBtn.style.display = 'inline-block';
     
     cartContainer.innerHTML = '';
     
