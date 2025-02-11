@@ -1,10 +1,3 @@
-// Adiciona o filtro de suporte
-const filtroContainer = document.querySelector(".flex.justify-center");
-const btnSuporte = document.createElement("button");
-btnSuporte.id = "suporte";
-btnSuporte.className = "filter-btn px-6 py-2 bg-white text-diamond rounded-full hover:bg-gray-50 transition";
-btnSuporte.innerText = "Suporte";
-filtroContainer.appendChild(btnSuporte);
 
 
 // Função para carregar produtos da API
@@ -23,19 +16,6 @@ async function loadProdutos() {
         renderProdutos(produtos);
     } catch (error) {
         console.error('Erro ao carregar produtos:', error);
-        // Mostrar produtos mock em caso de erro
-        renderProdutos([
-            {
-                nome: "Fresa de Topo",
-                referencia: "FT-001",
-                categoria: "fresa"
-            },
-            {
-                nome: "Broca Helicoidal",
-                referencia: "BH-001",
-                categoria: "broca"
-            }
-        ]);
     }
 }
 
@@ -96,27 +76,35 @@ function renderProdutos(produtos) {
 
 // Configuração dos filtros
 function setupFiltros() {
-const filtroContainer = document.querySelector(".flex.justify-center");
+    const filtroContainer = document.querySelector(".flex.justify-center");
     if (!filtroContainer) {
         console.error('Container de filtros não encontrado');
         return;
     }
 
-    // Adiciona botão de suporte se não existir
-    if (!document.getElementById('suporte')) {
-const btnSuporte = document.createElement("button");
-btnSuporte.id = "suporte";
-btnSuporte.className = "filter-btn px-6 py-2 bg-white text-diamond rounded-full hover:bg-gray-50 transition";
-btnSuporte.innerText = "Suporte";
-filtroContainer.appendChild(btnSuporte);
-    }
+    // Estilo base para todos os botões de filtro
+    const baseButtonClass = "filter-btn px-10 py-2 rounded-full transition-all duration-300 transform hover:scale-105 mx-2";
+    const activeClass = "bg-green-500 text-black";
+    const inactiveClass = "bg-white text-gray-600 border-2 border-gray-600";
 
-    // Configura os filtros
-const buttons = document.querySelectorAll(".filter-btn");
-const produtosElements = document.querySelectorAll(".produto");
 
-buttons.forEach((button) => {
-        button.removeEventListener("click", filterHandler); // Remove handlers antigos
+
+    // Atualiza classes de todos os botões existentes
+    const buttons = document.querySelectorAll(".filter-btn");
+    buttons.forEach((button) => {
+        // Remove classes antigas
+        button.className = baseButtonClass;
+        // Adiciona classes iniciais
+        button.classList.add(...inactiveClass.split(' '));
+        
+        // Se o botão já estiver ativo, aplica o estilo ativo
+        if (button.classList.contains('active')) {
+            button.classList.remove(...inactiveClass.split(' '));
+            button.classList.add(...activeClass.split(' '));
+        }
+
+        // Remove handlers antigos e adiciona novo
+        button.removeEventListener("click", filterHandler);
         button.addEventListener("click", filterHandler);
     });
 }
@@ -126,23 +114,26 @@ function filterHandler() {
     const buttons = document.querySelectorAll(".filter-btn");
     const produtosElements = document.querySelectorAll(".produto");
     
-        buttons.forEach((btn) => {
-            btn.classList.remove("bg-green-500", "text-white");
-            btn.classList.add("bg-white", "text-diamond");
-        });
+    // Remove classe ativa de todos os botões
+    buttons.forEach((btn) => {
+        btn.classList.remove("bg-green-500", "text-black", "active");
+        btn.classList.add("bg-white", "text-gray-600", "border-2", "border-gray-600");
+    });
 
-    this.classList.remove("bg-white", "text-diamond");
-    this.classList.add("bg-green-500", "text-black");
+    // Adiciona classe ativa ao botão clicado
+    this.classList.remove("bg-white", "text-gray-600", "border-2", "border-gray-600");
+    this.classList.add("bg-green-500", "text-black", "active");
 
     const filtro = this.id;
 
-        produtosElements.forEach((produto) => {
-            if (filtro === "todas" || produto.classList.contains(filtro)) {
-                produto.style.display = "block";
-            } else {
-                produto.style.display = "none";
-            }
-        });
+    // Filtra os produtos
+    produtosElements.forEach((produto) => {
+        if (filtro === "todas" || produto.classList.contains(filtro)) {
+            produto.style.display = "block";
+        } else {
+            produto.style.display = "none";
+        }
+    });
 }
 
 // Inicialização quando o DOM estiver pronto
