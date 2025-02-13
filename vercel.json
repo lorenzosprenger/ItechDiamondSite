@@ -17,7 +17,18 @@
     },
     {
       "src": "/",
-      "dest": "/src/index.html"
+      "dest": "/src/index.html",
+      "headers": {
+        "Cache-Control": "public, max-age=0, must-revalidate"
+      }
+    },
+    {
+      "src": "/(.+\\.html)",
+      "dest": "/src/$1"
+    },
+    {
+      "src": "/(.+\\.[a-zA-Z]+)",
+      "dest": "/src/$1"
     },
     {
       "handle": "filesystem"
