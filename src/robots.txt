@@ -1,5 +1,2 @@
 User-agent: *
 Allow: /
-
-# Google Site Verification
-google-site-verification: Xbsoe4WnOQcWd_A0Q9D_ge22ojgXSDpxjPThgJ9_lS8
