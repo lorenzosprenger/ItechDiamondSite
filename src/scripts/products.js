@@ -1,4 +1,5 @@
-
+// Adicionar variável para armazenar produtos
+let allProducts = [];
 
 // Função para carregar produtos da API
 async function loadProdutos() {
@@ -12,8 +13,8 @@ async function loadProdutos() {
             });
             throw new Error(`Erro ao carregar produtos: ${response.status}`);
         }
-        const produtos = await response.json();
-        renderProdutos(produtos);
+        allProducts = await response.json(); // Guardar todos os produtos
+        renderProdutos(allProducts);
     } catch (error) {
         console.error('Erro ao carregar produtos:', error);
     }
@@ -87,8 +88,6 @@ function setupFiltros() {
     const activeClass = "bg-green-500 text-black";
     const inactiveClass = "bg-white text-gray-600 border-2 border-gray-600";
 
-
-
     // Atualiza classes de todos os botões existentes
     const buttons = document.querySelectorAll(".filter-btn");
     buttons.forEach((button) => {
@@ -105,7 +104,14 @@ function setupFiltros() {
 
         // Remove handlers antigos e adiciona novo
         button.removeEventListener("click", filterHandler);
-        button.addEventListener("click", filterHandler);
+        button.addEventListener("click", function() {
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.value = ''; // Limpar pesquisa ao trocar filtro
+                document.getElementById('clearSearch').style.display = 'none';
+            }
+            filterHandler.call(this);
+        });
     });
 }
 
@@ -136,8 +142,43 @@ function filterHandler() {
     });
 }
 
+// Adicionar função de pesquisa
+function searchProducts(query) {
+    if (!query) {
+        renderProdutos(allProducts);
+        return;
+    }
+
+    query = query.toLowerCase();
+    const filteredProducts = allProducts.filter(product => 
+        product.nome.toLowerCase().includes(query) || 
+        product.referencia.toLowerCase().includes(query)
+    );
+
+    renderProdutos(filteredProducts);
+}
+
 // Inicialização quando o DOM estiver pronto
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM carregado, iniciando carregamento de produtos...');
     loadProdutos();
+
+    const searchInput = document.getElementById('searchInput');
+    const clearButton = document.getElementById('clearSearch');
+
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value;
+            searchProducts(query);
+            clearButton.style.display = query ? 'block' : 'none';
+        });
+    }
+
+    if (clearButton) {
+        clearButton.addEventListener('click', () => {
+            searchInput.value = '';
+            searchProducts('');
+            clearButton.style.display = 'none';
+        });
+    }
 });
