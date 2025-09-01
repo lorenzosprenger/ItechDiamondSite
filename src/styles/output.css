@@ -182522,6 +182522,88 @@ video {
   pointer-events: none;
 }
 
+/* --- Estilos do Header "UAU" --- */
+
+/* Animação de entrada para o header */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animação de brilho para o botão */
+@keyframes button-shine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Classe base do header */
+#main-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    transition: background-color 0.4s ease-in-out, backdrop-filter 0.4s ease-in-out, box-shadow 0.4s ease-in-out, padding 0.4s ease-in-out;
+    animation: fadeInDown 0.8s ease-out forwards;
+}
+
+/* Classe aplicada via JS quando a página é rolada */
+#main-header.header-scrolled {
+    background-color: rgba(14, 24, 41, 0.7); /* Azul escuro semi-transparente */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); /* Suporte para Safari */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    border-bottom: 1px solid rgba(56, 189, 248, 0.2); /* Borda ciano sutil */
+}
+
+/* Estilo para os links de navegação com underline animado */
+.nav-link {
+    position: relative;
+    padding-bottom: 8px;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #22d3ee; /* Cor ciano */
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Estilo do botão "UAU" */
+.cta-button {
+    position: relative;
+    overflow: hidden;
+    background-image: linear-gradient(to right, #22d3ee, #0891b2);
+    box-shadow: 0 0 15px rgba(34, 211, 238, 0.4);
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: button-shine 3s infinite linear;
+}
+
+
 /* --- Efeitos de Fundo (Exemplo - Partículas/Gradiente Animado) --- */
 /* Esta é uma base. Você pode substituir por uma imagem de fundo de alta resolução com overlay, ou um vídeo curto. */
 .hero-background {
