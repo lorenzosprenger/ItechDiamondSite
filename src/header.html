@@ -1,31 +1,131 @@
-<div class="container mx-auto flex justify-between items-center p-4 backdrop-blur-sm bg-gray-900/50">
-    <a href="index.html" class="transform transition-transform hover:scale-105 z-10" aria-label="Ir para a página inicial">
-        <img src="assets/logoItech.png"
-             alt="Itech Diamond Logo"
-             class="h-20 md:h-24 lg:h-28 w-auto object-contain"
-             width="500" height="500"
-             decoding="async" loading="eager">
-    </a>
-    <nav class="hidden md:flex items-center space-x-8 text-lg">
-        <a href="index.html" class="nav-link text-white text-shadow-light font-semibold tracking-wide hover:text-cyan-200">Home</a>
-        <a href="ferramentas.html" class="nav-link text-white text-shadow-light font-semibold tracking-wide hover:text-cyan-200">Ferramentas</a>
-        <a href="catalogos.html" class="nav-link text-white text-shadow-light font-semibold tracking-wide hover:text-cyan-200">Catálogos</a>
-        <a href="tecnologia.html" class="nav-link text-white text-shadow-light font-semibold tracking-wide hover:text-cyan-200">Tecnologia</a>
-        <a href="suporte.html" class="nav-link text-white text-shadow-light font-semibold tracking-wide hover:text-cyan-200">Suporte</a>
-    </nav>
-    <div class="hidden md:flex items-center space-x-6">
-        <a href="carrinho.html" class="relative text-gray-300 hover:text-white" title="Ver Carrinho">
-            <i class="fas fa-shopping-cart text-2xl"></i>
-            <span id="cart-count" class="absolute -top-2 -right-3 bg-custom-cyan text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full hidden">0</span>
-        </a>
-        <a href="suporte.html" class="cta-button text-white font-bold py-3 px-6 rounded-lg">Fale Conosco</a>
-    </div>
-    <button id="mobile-menu-button" class="md:hidden text-white z-10" aria-controls="mobile-menu" aria-expanded="false" aria-label="Abrir menu móvel"><i class="fas fa-bars text-2xl"></i></button>
-</div>
-<div id="mobile-menu" class="hidden md:hidden bg-gray-900/90 backdrop-blur-lg">
-    <a href="index.html" class="nav-link block text-gray-200 hover:bg-cyan-500/20 px-4 py-3">Home</a>
-    <a href="ferramentas.html" class="nav-link block text-gray-200 hover:bg-cyan-500/20 px-4 py-3">Ferramentas</a>
-    <a href="catalogos.html" class="nav-link block text-gray-200 hover:bg-cyan-500/20 px-4 py-3">Catálogos</a> <a href="tecnologia.html" class="nav-link block text-gray-200 hover:bg-cyan-500/20 px-4 py-3">Tecnologia</a>
-    <a href="suporte.html" class="nav-link block text-gray-200 hover:bg-cyan-500/20 px-4 py-3">Suporte</a>
-    <a href="carrinho.html" class="nav-link block text-gray-200 hover:bg-cyan-500/20 px-4 py-3">Carrinho</a>
-</div>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itech Diamond - Header Revolucionário</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="styles/header.css" rel="stylesheet">
+    
+</head>
+<body class="bg-gray-900 min-h-screen">
+    <header id="main-header" class="header-container">
+        <div class="container mx-auto flex justify-between items-center p-4 relative z-10">
+            <!-- Logo Section -->
+            <a href="index.html" class="logo-container" aria-label="Ir para a página inicial">
+                <!-- Simulating logo with styled div -->
+                <img src="assets/logoItech.png" class="logo-main bg-gradient-to-r from-cyan-400 to-blue-500 rounded-lg flex items-center justify-center text-white font-bold text-xl">
+                    
+                
+                <!-- Diamond Accent -->
+                <div class="diamond-accent bg-gradient-to-r from-cyan-300 to-blue-400 rounded-full flex items-center justify-center text-white font-bold">
+                    💎
+                </div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="ferramentas.html" class="nav-link">Ferramentas</a>
+                <a href="catalogos.html" class="nav-link">Catálogos</a>
+                <a href="tecnologia.html" class="nav-link">Tecnologia</a>
+                <a href="suporte.html" class="nav-link">Suporte</a>
+            </nav>
+
+            <!-- Desktop Actions -->
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="carrinho.html" class="cart-container" title="Ver Carrinho">
+                    <i class="fas fa-shopping-cart cart-icon"></i>
+                    <span id="cart-count" class="absolute -top-2 -right-3 bg-custom-cyan text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full hidden">0</span>
+                </a>
+                <a href="suporte.html" class="cta-button">
+                    Fale Conosco
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-button" id="mobile-menu-toggle" aria-label="Abrir menu móvel">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobile-menu">
+            <a href="index.html" class="mobile-menu-link">Home</a>
+            <a href="ferramentas.html" class="mobile-menu-link">Ferramentas</a>
+            <a href="catalogos.html" class="mobile-menu-link">Catálogos</a>
+            <a href="tecnologia.html" class="mobile-menu-link">Tecnologia</a>
+            <a href="suporte.html" class="mobile-menu-link">Suporte</a>
+            <a href="carrinho.html" class="mobile-menu-link">Carrinho</a>
+        </div>
+    </header>
+
+   
+    <script>
+        // Header scroll behavior
+        const header = document.getElementById('main-header');
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        let lastScrollY = window.scrollY;
+
+        // Scroll handler for header transformation
+        function handleScroll() {
+            const currentScrollY = window.scrollY;
+            
+            if (currentScrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+            
+            lastScrollY = currentScrollY;
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const isActive = mobileMenu.classList.contains('active');
+            
+            if (isActive) {
+                mobileMenu.classList.remove('active');
+                mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            } else {
+                mobileMenu.classList.add('active');
+                mobileMenuToggle.innerHTML = '<i class="fas fa-times"></i>';
+            }
+        }
+
+
+        // Event listeners
+        window.addEventListener('scroll', handleScroll);
+        mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!header.contains(e.target) && mobileMenu.classList.contains('active')) {
+                mobileMenu.classList.remove('active');
+                mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Initialize cart count (simulate dynamic data)
+        setTimeout(() => {
+            updateCartCount(Math.floor(Math.random() * 9) + 1);
+        }, 2000);
+    </script>
+</body>
+</html>
