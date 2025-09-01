@@ -141,3 +141,13 @@ p {
         font-size: 14px;
     }
 } 
+
+/* Logo visibility helper: subtle white glow for dark backgrounds */
+.logo-white-shadow {
+    /* stronger white glow for better contrast on dark backgrounds */
+    filter: drop-shadow(0 3px 10px rgba(255,255,255,0.28)) drop-shadow(0 10px 28px rgba(255,255,255,0.12));
+    transition: filter 160ms ease-in-out;
+}
+.logo-white-shadow:hover {
+    filter: drop-shadow(0 4px 12px rgba(255,255,255,0.36)) drop-shadow(0 12px 32px rgba(255,255,255,0.16));
+}

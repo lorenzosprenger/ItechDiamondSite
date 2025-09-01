@@ -182476,3 +182476,440 @@ video {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
+
+/* Em src/styles/output.css */
+/* Substitua as regras de animação anteriores por estas */
+
+@keyframes spin-3d {
+  from {
+    transform: rotateY(0deg) rotateX(10deg);
+  }
+  to {
+    transform: rotateY(360deg) rotateX(10deg);
+  }
+}
+
+/* Container do efeito 3D */
+#selected-category-image-wrapper {
+  transform-style: preserve-3d;
+  animation: spin-3d 6s linear infinite;
+  transition: transform 0.5s;
+}
+
+/* Sombra para dar profundidade */
+#selected-category-image-wrapper::before {
+  content: '';
+  position: absolute;
+  left: 5%;
+  bottom: -15px;
+  width: 90%;
+  height: 20px;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.35) 0%,rgba(0,0,0,0) 80%);
+  transform: rotateX(90deg) translateZ(-30px);
+  filter: blur(5px);
+}
+
+/* Efeito de brilho/reflexo na superfície */
+#selected-category-image-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, transparent 50%, rgba(255, 255, 255, 0.15) 90%, rgba(255, 255, 255, 0.25) 100%);
+  transform: translateZ(30px); /* Coloca o brilho "acima" da imagem */
+  pointer-events: none;
+}
+
+/* --- Estilos do Header "UAU" --- */
+
+/* Animação de entrada para o header */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animação de brilho para o botão */
+@keyframes button-shine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Classe base do header */
+#main-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    transition: background-color 0.4s ease-in-out, backdrop-filter 0.4s ease-in-out, box-shadow 0.4s ease-in-out, padding 0.4s ease-in-out;
+    animation: fadeInDown 0.8s ease-out forwards;
+}
+
+/* Classe aplicada via JS quando a página é rolada */
+#main-header.header-scrolled {
+    background-color: rgba(14, 24, 41, 0.7); /* Azul escuro semi-transparente */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); /* Suporte para Safari */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    border-bottom: 1px solid rgba(56, 189, 248, 0.2); /* Borda ciano sutil */
+}
+
+/* Estilo para os links de navegação com underline animado */
+.nav-link {
+    position: relative;
+    padding-bottom: 8px;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #22d3ee; /* Cor ciano */
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Estilo do botão "UAU" */
+.cta-button {
+    position: relative;
+    overflow: hidden;
+    background-image: linear-gradient(to right, #22d3ee, #0891b2);
+    box-shadow: 0 0 15px rgba(34, 211, 238, 0.4);
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: button-shine 3s infinite linear;
+}
+
+
+/* --- Efeitos de Fundo (Exemplo - Partículas/Gradiente Animado) --- */
+/* Esta é uma base. Você pode substituir por uma imagem de fundo de alta resolução com overlay, ou um vídeo curto. */
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(14, 24, 41, 1) 0%, rgba(0, 50, 80, 1) 50%, rgba(14, 24, 41, 1) 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Pseudo-elementos para efeito de "estrelas" ou "partículas" */
+.hero-background::before,
+.hero-background::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(34, 211, 238, 0.8);
+    animation: particleMove 30s linear infinite;
+}
+
+.hero-background::before {
+    top: 10%; left: 20%; animation-delay: 0s;
+}
+.hero-background::after {
+    top: 70%; left: 80%; animation-delay: 15s;
+}
+
+/* Mais partículas (você pode adicionar quantos quiser, ajustando top/left/delay) */
+.hero-background > div {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(34, 211, 238, 0.8);
+    animation: particleMove 30s linear infinite;
+}
+.hero-background > div:nth-child(1) { top: 50%; left: 5%; animation-delay: 5s; }
+.hero-background > div:nth-child(2) { top: 30%; left: 90%; animation-delay: 10s; }
+.hero-background > div:nth-child(3) { top: 80%; left: 40%; animation-delay: 20s; }
+.hero-background > div:nth-child(4) { top: 20%; left: 60%; animation-delay: 25s; }
+
+
+@keyframes particleMove {
+    0% { transform: translate(0, 0); opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { transform: translate(100vw, 100vh); opacity: 0; } /* Ajuste para sair da tela */
+}
+
+
+/* --- Animações Gerais de Componentes (Ao Rolar) --- */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Contador de Produtos GESAC --- */
+.counter-value {
+    font-variant-numeric: tabular-nums; /* Para números alinhados */
+}
+
+
+/* --- Cards de Categoria 3D-ish --- */
+.category-card-3d {
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.category-card-3d-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+    transform-style: preserve-3d;
+}
+
+.category-card-3d:hover .category-card-3d-inner {
+    transform: rotateY(10deg) rotateX(5deg) translateZ(20px);
+    box-shadow: 0 20px 40px rgba(34, 211, 238, 0.2);
+}
+
+.category-card-3d-front, .category-card-3d-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+    border-radius: 0.5rem; /* rounded-lg */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background: linear-gradient(145deg, rgba(30, 41, 59, 0.95), rgba(46, 60, 80, 0.95));
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.category-card-3d-front {
+    transform: rotateY(0deg);
+}
+
+.category-card-3d-back {
+    transform: rotateY(180deg); /* Não visível por padrão, apenas no hover se fôssemos virar */
+    /* Para este efeito, vamos apenas simular a profundidade no hover, não virar completamente. */
+    /* Se quisesse virar, a animação do inner teria que ter rotateY(180deg) no hover */
+}
+
+/* Ajustes para o img dentro do card */
+.category-card-3d-inner img {
+    filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.5));
+}
+
+/* Sombra de texto mais suave */
+.text-shadow-light {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Estilo do Novo Fundo do Hero Section --- */
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../assets/hero-image.png'); /* <-- MUDANÇA AQUI! */
+    background-size: cover;
+    background-position: center;
+    /* Adiciona um overlay escuro para garantir a legibilidade do texto */
+    background-color: rgba(14, 24, 41, 0.7);
+    background-blend-mode: multiply;
+}
+
+/* --- Estilos da Página de Tecnologia --- */
+
+/* Hero Section Específico para a Página de Tecnologia */
+.tech-hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+    background-size: cover;
+    background-position: center;
+    min-height: 60vh;
+}
+
+.tech-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(14, 24, 41, 1) 0%, rgba(14, 24, 41, 0.7) 50%, rgba(14, 24, 41, 1) 100%);
+}
+
+/* Estilo para os cards dos Pilares da Inovação */
+.pillar-card {
+    background-color: rgba(30, 41, 59, 0.5); /* bg-gray-800 com transparência */
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    border-radius: 0.75rem; /* rounded-xl */
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pillar-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(34, 211, 238, 0.2);
+}
+
+.pillar-card img {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+
+
+
+/* Animação de Zoom Lento (Ken Burns) */
+@keyframes kenBurns {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  100% {
+    transform: scale(1.3) translate(-2%, 2%);
+  }
+}
+
+/* Container para aplicar o efeito na imagem de suporte */
+.hero-suporte-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../assets/suporte-hero.png');
+    background-size: cover;
+    background-position: center;
+    /* Aplica a animação */
+    animation: kenBurns 12s ease-in-out infinite alternate;
+}
+
+/* --- Estilos da Página de Catálogos --- */
+
+/* Card do Catálogo */
+.catalog-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.catalog-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(34, 211, 238, 0.2);
+}
+
+/* Modal de Visualização de PDF */
+.pdf-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.pdf-modal.is-open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.pdf-modal-content {
+    background-color: #111827; /* bg-gray-900 */
+    width: 90%;
+    height: 90%;
+    max-width: 1200px;
+    border-radius: 0.5rem; /* rounded-lg */
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+.pdf-modal.is-open .pdf-modal-content {
+    transform: scale(1);
+}
+
+.pdf-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background-color: #1f2937; /* bg-gray-800 */
+    border-bottom: 1px solid #374151; /* border-gray-700 */
+}
+
+.pdf-modal-body {
+    flex-grow: 1;
+}
+
+.pdf-modal-body iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.catalogo__item{
+  border-radius: 10px;
+  background: #000;
+  border: 1px solid transparent;
+  transition: .2s;
+  margin: 15px auto;
+  text-align: center;
+  padding: 10px;
+}

@@ -1,190 +1,108 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="Xbsoe4WnOQcWd_A0Q9D_ge22ojgXSDpxjPThgJ9_lS8" />
-    <title>Tecnologia em Usinagem - Itech Diamond</title>
-    <meta name="description" content="Tecnologia avançada em ferramentas de usinagem GESAC. Soluções em metal duro, aços especiais e ferramentas de alta precisão para indústria.">
-    <meta name="keywords" content="tecnologia usinagem, metal duro GESAC, ferramentas precisão, inovação usinagem, GESAC tecnologia, São Leopoldo RS">
-    <meta property="og:title" content="Tecnologia em Usinagem - Itech Diamond">
-    <meta property="og:description" content="Tecnologia avançada em ferramentas GESAC. Soluções precisas para usinagem industrial.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://itech-diamond.vercel.app/tecnologia.html">
-    <meta property="og:image" content="https://itech-diamond.vercel.app/assets/logoItech.png">
-    <link rel="stylesheet" href="styles/output.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="./assets/DIAMANTE.png" type="image/x-icon">
-    <link rel="stylesheet" href="styles/common.css">
+    <title>Tecnologia - Itech Diamond</title>
+    <link href="styles/output.css" rel="stylesheet">
+    <link rel="shortcut icon" href="assets/DIAMANTE.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body class="bg-gray-100">
-    <div class="diamond-background" id="diamondContainer"></div>
-    
-    <header class="bg-white shadow-lg">
-        <div class="container mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center fade-in">
-            <img src="assets/logoItech.png" alt="Itech Diamond Logo" class="h-24 md:h-40 md:ml-20 mb-4 md:mb-0" onclick="location.href='index.html'" style="cursor: pointer;">
-            <nav class="w-full md:w-auto">
-                <ul class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-12 text-lg items-center">
-                    <li>
-                        <a href="index.html" class="text-diamond hover:text-diamond transition duration-300">Home</a>
-                    </li>
-                    <li>
-                        <a href="ferramentas.html" class="text-diamond hover:text-diamond transition duration-300">Ferramentas</a>
-                    </li>
-                    <li>
-                        <a href="tecnologia.html" class="text-diamond hover:text-diamond transition duration-300">Tecnologia</a>
-                    </li>
-                    <li>
-                        <a href="suporte.html" class="text-diamond hover:text-diamond transition duration-300">Suporte Técnico</a>
-                    </li>
-                    <li class="relative">
-                        <a href="carrinho.html" class="text-diamond px-3 hover:text-diamond transition duration-300">
-                            🛒
-                            <span id="cart-count" class="absolute top-0 right-0 bg-red-500 text-white rounded-full px-1 text-xs">0</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<body class="bg-gray-900 text-white font-sans overflow-x-hidden">
 
-    <main class="container mx-auto px-4 py-10">
-        <!-- Hero Section -->
-        <section class="text-center mb-12 fade-in">
-            <h1 class="text-3xl md:text-5xl font-bold text-diamond mb-6">Nossa Tecnologia</h1>
-            <p class="text-xl text-gray-600 mt-4 max-w-3xl mx-auto">
-                Excelência em ferramentas de metal duro e aços especiais
-            </p>
-        </section>
+    <header id="header-placeholder" class="fixed w-full top-0 z-50"></header>
 
-        <!-- Tecnologia Principal -->
-        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-20 items-center fade-in">
-            <div class="space-y-6">
-                <h2 class="text-3xl font-bold text-diamond">Tecnologia de Ponta</h2>
-                <p class="text-gray-600 leading-relaxed">
-                    Utilizamos materiais de alta qualidade como metal duro, aço inox e alumínio, 
-                    garantindo precisão excepcional e durabilidade superior em todas as nossas ferramentas. 
-                    Nossa experiência nos permite desenvolver soluções específicas para cada necessidade.
+    <main>
+        <section class="tech-hero" style="background-image: url('assets/hero-tech.png');">
+            <div class="relative z-10 p-6 max-w-4xl mx-auto">
+                <h1 class="text-5xl md:text-7xl font-extrabold text-cyan-400 leading-tight mb-4 text-shadow-light animate-on-scroll">
+                    A Ciência da Performance
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-200 text-shadow-light animate-on-scroll">
+                    Descubra a tecnologia embarcada em cada ferramenta que eleva sua produção a um novo patamar de precisão e eficiência.
                 </p>
-                <ul class="space-y-4">
-                    <li class="flex items-center">
-                        <svg class="w-6 h-6 text-diamond mr-2" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
-                        </svg>
-                        Metal duro de alta performance
-                    </li>
-                    <li class="flex items-center">
-                        <svg class="w-6 h-6 text-diamond mr-2" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
-                        </svg>
-                        Aços especiais selecionados
-                    </li>
-                    <li class="flex items-center">
-                        <svg class="w-6 h-6 text-diamond mr-2" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
-                        </svg>
-                        Controle dimensional rigoroso
-                    </li>
-                </ul>
             </div>
         </section>
 
-        <!-- Cards de Tecnologia -->
-        <section class="mb-20 fade-in">
-            <h2 class="text-2xl md:text-4xl font-bold text-diamond text-center mb-12">Nossas Inovações</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-                <div class="tech-card bg-white p-8 rounded-lg shadow-lg">
-                    <div class="text-4xl text-[#6dbdcf] mb-4">🔍</div>
-                    <h3 class="text-xl font-semibold mb-2">Precisão Absoluta</h3>
-                    <p class="text-gray-600">Sistema de medição a laser para garantir precisão submilimétrica.</p>
+        <section class="container mx-auto px-4 py-20">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-4xl md:text-5xl font-bold text-white">Pilares da Nossa Inovação</h2>
+                <p class="text-lg text-gray-300 mt-4 max-w-3xl mx-auto">
+                    Nossa excelência é construída sobre três fundamentos tecnológicos que garantem performance superior e durabilidade incomparável.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-10">
+                <div class="pillar-card animate-on-scroll">
+                    <img src="assets/hero-tech.png" alt="Revestimentos Avançados">
+                    <div class="p-8">
+                        <i class="fas fa-layer-group text-4xl text-cyan-400 mb-4"></i>
+                        <h3 class="text-2xl font-bold mb-3">Revestimentos Avançados</h3>
+                        <p class="text-gray-300">
+                            Utilizamos revestimentos PVD (Physical Vapor Deposition) de última geração, como AlTiN e TiSiN. Eles criam uma barreira microfina que aumenta a dureza, reduz o atrito e protege a ferramenta contra altas temperaturas, permitindo cortes mais rápidos e uma vida útil até 3x maior.
+                        </p>
+                    </div>
                 </div>
 
-                <div class="tech-card bg-white p-8 rounded-lg shadow-lg">
-                    <div class="text-4xl text-[#6dbdcf] mb-4">🔧</div>
-                    <h3 class="text-xl font-semibold mb-2">Durabilidade Superior</h3>
-                    <p class="text-gray-600">Materiais de alta qualidade e processos rigorosos de fabricação.</p>
+                <div class="pillar-card animate-on-scroll animation-delay-200">
+                    <img src="assets/tech-material.png" alt="Matéria-Prima Superior">
+                    <div class="p-8">
+                        <i class="fas fa-atom text-4xl text-cyan-400 mb-4"></i>
+                        <h3 class="text-2xl font-bold mb-3">Matéria-Prima Superior</h3>
+                        <p class="text-gray-300">
+                            Tudo começa com a base. Selecionamos os melhores substratos de metal duro (Carbeto de Tungstênio) com microgrãos ultrafinos. Isso garante uma tenacidade excepcional e a máxima resistência ao desgaste e à fratura, mesmo nas condições mais severas de usinagem.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="pillar-card animate-on-scroll animation-delay-400">
+                    <img src="assets/tech-geometry.png" alt="Geometria de Ponta">
+                    <div class="p-8">
+                        <i class="fas fa-drafting-compass text-4xl text-cyan-400 mb-4"></i>
+                        <h3 class="text-2xl font-bold mb-3">Geometria de Ponta</h3>
+                        <p class="text-gray-300">
+                            O design de cada ferramenta é projetado em software avançado para otimizar o corte. Geometrias de corte positivas, hélices variáveis e quebra-cavacos inovadores reduzem a força de corte, melhoram a evacuação de cavacos e garantem um acabamento superficial impecável.
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Seção de Produtos e Tecnologias -->
-        <section class="mb-20 fade-in">
-            <h2 class="text-4xl font-bold text-diamond text-center mb-12">Tecnologia e Qualidade</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-lg shadow-lg text-center transform hover:scale-105 transition duration-300">
-                    <div class="text-4xl text-[#6dbdcf] mb-4">🔧</div>
-                    <h3 class="text-xl font-semibold mb-3">Produtos GESAC</h3>
-                    <p class="text-gray-600 mb-4">Distribuidor oficial de ferramentas GESAC, garantindo qualidade e procedência.</p>
-                    <ul class="text-left text-sm text-gray-500 space-y-2 pl-4">
-                        <li>• Metal duro importado</li>
-                        <li>• Aços especiais certificados</li>
-                        <li>• Garantia de fábrica</li>
-                    </ul>
+        <section class="bg-gray-800 py-20 px-4">
+            <div class="container mx-auto flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2 animate-on-scroll">
+                    <i class="fas fa-check-circle text-7xl text-cyan-400 mb-6 text-center w-full"></i>
+                    <h2 class="text-4xl font-bold text-center md:text-left">Qualidade Assegurada em Cada Etapa</h2>
+                    <p class="text-lg text-gray-300 mt-4">
+                        Nossa parceria com a GESAC garante um processo de fabricação com tolerâncias mínimas. Cada lote passa por uma rigorosa inspeção a laser e testes de performance para assegurar que cada ferramenta que chega até você é um sinônimo de perfeição e confiabilidade.
+                    </p>
                 </div>
-
-                <div class="bg-white p-6 rounded-lg shadow-lg text-center transform hover:scale-105 transition duration-300">
-                    <div class="text-4xl text-[#6dbdcf] mb-4">📊</div>
-                    <h3 class="text-xl font-semibold mb-3">Suporte Técnico</h3>
-                    <p class="text-gray-600 mb-4">Assistência especializada na escolha e aplicação das ferramentas.</p>
-                    <ul class="text-left text-sm text-gray-500 space-y-2 pl-4">
-                        <li>• Consultoria técnica</li>
-                        <li>• Seleção adequada</li>
-                        <li>• Otimização de processos</li>
-                    </ul>
-                </div>
-
-                <div class="bg-white p-6 rounded-lg shadow-lg text-center transform hover:scale-105 transition duration-300">
-                    <div class="text-4xl text-[#6dbdcf] mb-4">🚚</div>
-                    <h3 class="text-xl font-semibold mb-3">Pronta Entrega</h3>
-                    <p class="text-gray-600 mb-4">Estoque estratégico para atendimento imediato.</p>
-                    <ul class="text-left text-sm text-gray-500 space-y-2 pl-4">
-                        <li>• Disponibilidade imediata</li>
-                        <li>• Entrega rápida</li>
-                        <li>• Produtos em estoque</li>
-                    </ul>
+                <div class="md:w-1/2 animate-on-scroll animation-delay-200">
+                    <img src="assets/logoGesac.png" alt="Logo GESAC" class="h-24 md:h-32 mx-auto opacity-80">
                 </div>
             </div>
         </section>
+
+        <section class="container mx-auto px-4 py-20 text-center">
+            <div class="animate-on-scroll">
+                <h2 class="text-4xl font-bold text-white mb-4">Veja a Tecnologia em Ação</h2>
+                <p class="text-lg text-gray-300 max-w-2xl mx-auto mb-8">
+                    Explore nosso catálogo e descubra como nossa tecnologia de ponta pode revolucionar a sua linha de produção.
+                </p>
+                <a href="ferramentas.html" class="cta-button text-white font-bold py-3 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105">
+                    Conhecer Ferramentas
+                </a>
+            </div>
+        </section>
+
     </main>
+    
+    <footer id="footer-placeholder" class="bg-gray-800 text-gray-400 py-8"></footer>
 
-    <footer class="bg-white shadow-lg mt-12 fade-in">
-        <div class="container mx-auto px-4 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Contato</h4>
-                    <p class="text-gray-600">vendas@itechdiamond.com.br</p>
-                    <p class="text-gray-600">+55 51 99511-2894</p>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Horário de Atendimento</h4>
-                    <p class="text-gray-600">Segunda a Sexta</p>
-                    <p class="text-gray-600">08:00 - 18:00</p>
-                </div>
-            </div>
-            <div class="border-t border-gray-200 mt-8 pt-8 text-center">
-                <p class="text-gray-600">&copy; 2025 Itech Diamond. Todos os direitos reservados.</p>
-            </div>
-        </div>
-    </footer>
     <script src="scripts/common.js"></script>
-    <script>
-        window.addEventListener('load', () => {
-            if (window.location.hostname !== 'localhost') {
-                const script = document.createElement('script')
-                script.src = '/_vercel/speed-insights/script.js'
-                document.head.appendChild(script)
-            }
-        })
-    </script>
-    <!-- Analytics -->
-    <script>
-        window.addEventListener('load', () => {
-            if (window.location.hostname !== 'localhost') {
-                const script = document.createElement('script')
-                script.src = '/_vercel/analytics/script.js'
-                document.head.appendChild(script)
-            }
-        })
-    </script>
+    <script src="scripts/animations.js"></script>
+    <script src="scripts/cart.js"></script>
+
+    
 </body>
 </html>

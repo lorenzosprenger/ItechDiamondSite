@@ -1,92 +1,33 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="google-site-verification" content="Xbsoe4WnOQcWd_A0Q9D_ge22ojgXSDpxjPThgJ9_lS8" />
-    <title>Carrinho de Orçamentos - Itech Diamond</title>
-    <meta name="description" content="Solicite orçamentos de ferramentas GESAC. Distribuidora oficial em São Leopoldo, RS. Fresas, brocas, pastilhas e suportes para usinagem.">
-    <meta name="keywords" content="orçamento GESAC, comprar ferramentas usinagem, preços metal duro, GESAC RS, ferramentas São Leopoldo">
-    <meta property="og:title" content="Orçamentos de Ferramentas - Itech Diamond">
-    <meta property="og:description" content="Solicite orçamentos de ferramentas GESAC. Distribuição oficial em São Leopoldo.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://itech-diamond.vercel.app/carrinho.html">
-    <meta property="og:image" content="https://itech-diamond.vercel.app/assets/logoItech.png">
-    <link rel="stylesheet" href="styles/output.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
-    <link rel="shortcut icon" href="./assets/DIAMANTE.png" type="image/x-icon">
-    <link rel="stylesheet" href="styles/common.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Cotação - Itech Diamond</title>
+    <link href="styles/output.css" rel="stylesheet">
+    <link rel="shortcut icon" href="assets/DIAMANTE.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body class="bg-gray-100">
-    <div class="diamond-background" id="diamondContainer"></div>
-    <header class="bg-white shadow-lg">
-        <div class="container mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center fade-in">
-            <img src="assets/logoItech.png" alt="Itech Diamond Logo" class="h-24 md:h-40 md:ml-20 mb-4 md:mb-0" onclick="location.href='index.html'" style="cursor: pointer;">
-            <nav class="w-full md:w-auto">
-                <ul class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-12 text-lg items-center">
-                    <li>
-                        <a href="index.html" class="text-diamond hover:text-diamond transition duration-300">Home</a>
-                    </li>
-                    <li>
-                        <a href="ferramentas.html" class="text-diamond hover:text-diamond transition duration-300">Ferramentas</a>
-                    </li>
-                    <li>
-                        <a href="tecnologia.html" class="text-diamond hover:text-diamond transition duration-300">Tecnologia</a>
-                    </li>
-                    <li>
-                        <a href="suporte.html" class="text-diamond hover:text-diamond transition duration-300">Suporte Técnico</a>
-                    </li>
-                    <li class="relative">
-                        <a href="carrinho.html" class="text-diamond px-3 hover:text-diamond transition duration-300">
-                            🛒
-                            <span id="cart-count" class="absolute top-0 right-0 bg-red-500 text-white rounded-full px-1 text-xs">0</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+<body class="bg-gray-900 text-white font-sans overflow-x-hidden">
+
+    <header id="header-placeholder" class="fixed w-full top-0 z-50"></header>
+
+    <main class="container mx-auto px-4 py-32">
+        <div class="text-center mb-12 animate-on-scroll">
+            <h1 class="text-4xl md:text-5xl font-bold text-cyan-400">Carrinho de Cotação</h1>
+            <p class="text-lg text-gray-300 mt-2">Revise seus itens e finalize o pedido de orçamento.</p>
         </div>
-    </header>
 
-    <main class="container mx-auto px-4 py-10">
-        <section class="text-center mb-12">
-            <h1 class="text-3xl md:text-5xl font-bold text-diamond mb-6">Carrinho de Compras</h1>
-            <p class="text-xl text-gray-600">Revise seus itens antes de solicitar um orçamento.</p>
-        </section>
-        
-        <section class="mb-12">
-            <div id="cart-items" class="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-8"></div>
-            <div class="text-center mt-8">
-                <button id="solicitarOrcamentoBtn" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700">
-                    Solicitar Orçamento
-                </button>
-                <button id="clearCartBtn" class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-700" onclick="clearCart()">
-                    Limpar Carrinho
-                </button>
+        <div id="cart-container">
             </div>
-
-            <div id="orcamentoModal" class="modal">
-                <div class="modal-content">
-                    <h2>Solicitar Orçamento</h2>
-                    <input type="text" id="userName" placeholder="Digite seu nome" class="mb-4 p-2 border rounded">
-                    <br>
-                    <button class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-700" id="whatsappLink">WhatsApp</button>
-                    <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700" id="emailLink">E-mail</button>
-                    <br>
-                    <button id="closeModal">Fechar</button>
-                </div>
-            </div>
-        </section>
     </main>
-    <footer class="bg-white shadow-lg mt-12 fade-in">
-        <div class="container mx-auto px-4 py-6 text-center">
-            <p class="text-gray-600">
-                &copy; 2025 Itech Diamond. Todos os direitos reservados.
-            </p>
-        </div>
-    </footer>
-    <script src="scripts/common.js"></script>
+    
+    <footer id="footer-placeholder" class="bg-gray-800 text-gray-400 py-8 mt-16"></footer>
+
     <script src="scripts/cart.js"></script>
-    <script src="scripts/mensagens.js"></script>
+    <script src="scripts/common.js"></script>
+    <script src="scripts/animations.js"></script>
+
     <!-- Analytics -->
     <script>
         window.addEventListener('load', () => {

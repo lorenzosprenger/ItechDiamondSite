@@ -37,7 +37,8 @@ console.log('Configurações de conexão do banco de dados:', {
 });
 
 // Inicialização do servidor
-const PORT = process.env.DB_PORT || 3000;
+// Use a variável PORT para o servidor HTTP. Não reutilize DB_PORT (porta do MySQL).
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
