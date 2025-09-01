@@ -50,6 +50,20 @@ window.addToCart = function(product) {
     showToast(`${product.nome} foi adicionado ao carrinho!`);
 }
 
+// Limpa o carrinho (utilitário)
+function clearCart() {
+    saveCart([]);
+    updateCartCount();
+}
+
+// Retorna os itens atuais do carrinho
+function loadCartItems() {
+    return loadCart();
+}
+
+// Expor uma referência simples ao conteúdo do carrinho
+const cartItems = loadCart();
+
 // Função para mostrar notificação (toast)
 function showToast(message) {
     // Remove qualquer toast existente para não empilhar
@@ -137,12 +151,12 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .catch(error => console.error('Erro ao carregar o footer:', error));
 });
-// Exporta funções globalmente para o `products.js`
-window.addToCart = addToCart;
-window.clearCart = clearCart;
-window.updateCartCount = updateCartCount;
-window.loadCartItems = loadCartItems;
-window.cartItems = cartItems;
+// Exporta funções globalmente para outros scripts
+window.addToCart = window.addToCart || addToCart;
+window.clearCart = window.clearCart || clearCart;
+window.updateCartCount = window.updateCartCount || updateCartCount;
+window.loadCartItems = window.loadCartItems || loadCartItems;
+window.cartItems = window.cartItems || cartItems;
 
 // Injects a floating WhatsApp button (appears after footer loads)
 function injectFloatingWhatsApp() {
