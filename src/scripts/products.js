@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div>
                     <h3 class="text-lg font-bold text-white">${product.nome || 'Nome não disponível'}</h3>
                     <p class="text-sm text-gray-400 mt-1">Referência: ${product.referencia || 'N/A'}</p>
-                    <p class="text-gray-300 my-3">${product.descricao || 'Produto de alta qualidade para usinagem.'}</p>
+                    <p class="text-gray-300 my-3"> Especificações: ${product.descricao || 'Produto de alta qualidade para usinagem.'}</p>
                 </div>
                 <button class="add-to-cart-btn mt-4 bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300 w-full" data-product-id="${product.id_produto || product.id || ''}">
                     Adicionar ao Carrinho
