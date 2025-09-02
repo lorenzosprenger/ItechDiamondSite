@@ -10,23 +10,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Configuração das categorias (nomes, palavras-chave e imagens)
     const categories = [
-        { name: 'Fresas', keywords: ['FRESA'], image: 'assets/ferramentas/fresa.png' },
-        { name: 'Brocas', keywords: ['BROCA'], image: 'assets/ferramentas/broca.png' },
-        { name: 'Pastilhas', keywords: ['PASTILHA'], image: 'assets/ferramentas/pastilha.png' },
-        { name: 'Suportes', keywords: ['SUPORTE'], image: 'assets/ferramentas/suporte.png' },
-        { name: 'Machos', keywords: ['MACHO'], image: 'assets/ferramentas/macho.png' },
-        { name: 'Outros', keywords: ['CHAVE', 'PARAFUSO'], image: 'assets/ferramentas/outros.png' }
+        { name: 'Fresa', image: 'assets/ferramentas/fresa.png' },
+        { name: 'Broca', image: 'assets/ferramentas/broca.png' },
+        { name: 'Pastilha', image: 'assets/ferramentas/pastilha.png' },
+        { name: 'Suporte', image: 'assets/ferramentas/suporte.png' },
+        { name: 'Macho', image: 'assets/ferramentas/macho.png' },
+        { name: 'Outros', image: 'assets/ferramentas/outros.png' }
     ];
 
-    // Função para categorizar um produto baseado no nome
-    const getProductCategory = (productName) => {
-        const upperCaseName = productName.toUpperCase();
-        for (const category of categories) {
-            if (category.keywords.some(keyword => upperCaseName.includes(keyword))) {
-                return category.name;
-            }
-        }
-        return 'Outros'; // Categoria padrão
+    // Função para obter a categoria do produto direto do banco
+    const getProductCategory = (product) => {
+        if (!product || !product.categoria) return 'Outros';
+        // Normaliza a categoria para primeira letra maiúscula
+        const categoria = product.categoria.charAt(0).toUpperCase() + product.categoria.slice(1).toLowerCase();
+        // Retorna a categoria se existir nas categorias definidas, senão retorna 'Outros'
+        return categories.find(c => c.name === categoria) ? categoria : 'Outros';
     };
 
     // Função para renderizar os cards de categoria
@@ -54,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const categoryData = categories.find(c => c.name === categoryName);
         // Garantir que allProducts seja um array antes de filtrar
         const source = Array.isArray(allProducts) ? allProducts : [];
-        const filteredProducts = source.filter(p => getProductCategory((p && p.nome) || '') === categoryName);
+        const filteredProducts = source.filter(p => getProductCategory(p) === categoryName);
 
         displayProducts(filteredProducts);
         
