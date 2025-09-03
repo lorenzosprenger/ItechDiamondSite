@@ -8,6 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let allProducts = [];
     let currentView = 'main'; // 'main', 'pastilhas', 'products'
+    
+    // Elementos de pesquisa
+    const searchInput = document.getElementById('search-input');
+    const searchButton = document.getElementById('search-button');
 
     // Configuração das categorias (nomes, palavras-chave e imagens)
     const mainCategories = [
@@ -85,6 +89,20 @@ document.addEventListener('DOMContentLoaded', () => {
         if (selectedCategoryImage && categoryData) {
             selectedCategoryImage.src = categoryData.image;
             selectedCategoryImage.alt = categoryData.name;
+        } else if (selectedCategoryImage) {
+            // Se não tiver categoria específica, usa a imagem baseada no primeiro produto
+            const firstProduct = filteredProducts[0];
+            if (firstProduct) {
+                // Encontra a categoria do produto
+                const productCategory = getProductCategory(firstProduct);
+                const allCategories = [...mainCategories, ...pastilhaCategories];
+                const categoryInfo = allCategories.find(c => c.name === productCategory);
+                
+                if (categoryInfo) {
+                    selectedCategoryImage.src = categoryInfo.image;
+                    selectedCategoryImage.alt = categoryInfo.name;
+                }
+            }
         }
         
         if (productListTitle) {
@@ -191,6 +209,67 @@ document.addEventListener('DOMContentLoaded', () => {
                 `;
             }
         }
+    }
+
+    // Função de pesquisa
+    const handleSearch = () => {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        
+        if (!searchTerm) {
+            displayCategoryCards(mainCategories);
+            if (productView) productView.classList.add('hidden');
+            if (categoryGrid) categoryGrid.classList.remove('hidden');
+            return;
+        }
+
+        // Filtra os produtos baseado no termo de pesquisa
+        const filteredProducts = allProducts.filter(product => 
+            (product.nome && product.nome.toLowerCase().includes(searchTerm)) ||
+            (product.referencia && product.referencia.toLowerCase().includes(searchTerm)) ||
+            (product.descricao && product.descricao.toLowerCase().includes(searchTerm))
+        );
+
+        // Mostra os resultados
+        if (categoryGrid) categoryGrid.classList.add('hidden');
+        if (productView) productView.classList.remove('hidden');
+        if (productListTitle) {
+            productListTitle.textContent = `Resultados da pesquisa para "${searchTerm}"`;
+        }
+
+        // Atualiza a imagem lateral baseado nos resultados da pesquisa
+        if (selectedCategoryImage && filteredProducts.length > 0) {
+            const firstProduct = filteredProducts[0];
+            const productCategory = getProductCategory(firstProduct);
+            const allCategories = [...mainCategories, ...pastilhaCategories];
+            const categoryInfo = allCategories.find(c => c.name === productCategory);
+            
+            if (categoryInfo) {
+                selectedCategoryImage.src = categoryInfo.image;
+                selectedCategoryImage.alt = categoryInfo.name;
+            }
+        }
+
+        displayProducts(filteredProducts);
+    };
+
+    // Adiciona eventos de pesquisa
+    if (searchButton) {
+        searchButton.addEventListener('click', handleSearch);
+    }
+
+    if (searchInput) {
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                handleSearch();
+            }
+        });
+
+        // Adiciona pesquisa em tempo real (opcional)
+        let debounceTimer;
+        searchInput.addEventListener('input', () => {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(handleSearch, 300); // Espera 300ms após o usuário parar de digitar
+        });
     }
 
     // Inicia a aplicação
