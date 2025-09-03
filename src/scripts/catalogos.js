@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
             title: "Catálogo de Furação",
             description: "Brocas de alta performance para furação eficiente e precisa nos mais diversos materiais da indústria.",
             coverImage: "assets/capa-catalogos/capa-catalogo-furacao.png",
-            pdfFile: "catalogos/Furação.pdf"
+            pdfFile: "catalogos/Furacao.pdf"
         },
     ];
 
