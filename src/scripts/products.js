@@ -7,9 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const productListTitle = document.getElementById('product-list-title');
 
     let allProducts = [];
+    let currentView = 'main'; // 'main', 'pastilhas', 'products'
 
     // Configuração das categorias (nomes, palavras-chave e imagens)
-    const categories = [
+    const mainCategories = [
         { name: 'Fresa', image: 'assets/ferramentas/fresa.png' },
         { name: 'Broca', image: 'assets/ferramentas/broca.png' },
         { name: 'Pastilha', image: 'assets/ferramentas/pastilha.png' },
@@ -18,38 +19,59 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: 'Outros', image: 'assets/ferramentas/outros.png' }
     ];
 
+    const pastilhaCategories = [
+        { name: 'Pastilha Rosqueamento', image: 'assets/ferramentas/pastilhaRosqueamento.png', displayName: 'Rosqueamento' },
+        { name: 'Pastilha Torneamento', image: 'assets/ferramentas/pastilhaTorneamento.png', displayName: 'Torneamento' },
+        { name: 'Pastilha Canal', image: 'assets/ferramentas/pastilhaCanal.png', displayName: 'Canal' },
+        { name: 'Pastilha Fresamento', image: 'assets/ferramentas/pastilhaFresamento.png', displayName: 'Fresamento' },
+        { name: 'Pastilha Furação', image: 'assets/ferramentas/pastilhaFuracao.png', displayName: 'Furação' }
+    ];
+
     // Função para obter a categoria do produto direto do banco
     const getProductCategory = (product) => {
         if (!product || !product.categoria) return 'Outros';
-        // Normaliza a categoria para primeira letra maiúscula
-        const categoria = product.categoria.charAt(0).toUpperCase() + product.categoria.slice(1).toLowerCase();
-        // Retorna a categoria se existir nas categorias definidas, senão retorna 'Outros'
-        return categories.find(c => c.name === categoria) ? categoria : 'Outros';
+        return product.categoria; // Retorna a categoria exata do banco de dados
     };
 
     // Função para renderizar os cards de categoria
-    const displayCategoryCards = () => {
+    const displayCategoryCards = (categories, isSubcategory = false) => {
         if (!categoryGrid) return;
         
-        categoryGrid.innerHTML = '';
+        categoryGrid.innerHTML = ''; // Limpa o grid antes de adicionar novos cards
+        
         categories.forEach(category => {
             const card = document.createElement('div');
-            card.className = 'category-card bg-gray-800 rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition-transform duration-300 cursor-pointer border border-gray-700';
-            card.dataset.category = category.name;
+            card.className = 'bg-gray-800 rounded-lg p-6 flex flex-col items-center transform transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer';
+            
+            const displayName = category.displayName || category.name;
+            
             card.innerHTML = `
-                <div class="p-6 text-center">
-                    <img src="${category.image}" alt="${category.name}" class="mx-auto h-40 w-40 object-contain mb-4">
-                    <h2 class="text-2xl font-bold text-cyan-400">${category.name}</h2>
-                </div>
+                <img src="${category.image}" alt="${displayName}" class="w-32 h-32 object-contain mb-4">
+                <h3 class="text-xl font-semibold text-cyan-400">${displayName}</h3>
             `;
-            card.addEventListener('click', () => showProductsForCategory(category.name));
+            
+            card.addEventListener('click', () => {
+                if (category.name === 'Pastilha' && !isSubcategory) {
+                    currentView = 'pastilhas';
+                    displayCategoryCards(pastilhaCategories, true);
+                    if (backButton) {
+                        backButton.style.display = 'block';
+                        backButton.onclick = () => {
+                            currentView = 'main';
+                            displayCategoryCards(mainCategories);
+                            backButton.style.display = 'none';
+                        };
+                    }
+                } else {
+                    showProductsForCategory(category.name);
+                }
+            });
+            
             categoryGrid.appendChild(card);
         });
-    };
-
-    // Função para exibir os produtos de uma categoria específica
+    };    // Função para exibir os produtos de uma categoria específica
     const showProductsForCategory = (categoryName) => {
-        const categoryData = categories.find(c => c.name === categoryName);
+        const categoryData = [...mainCategories, ...pastilhaCategories].find(c => c.name === categoryName);
         // Garantir que allProducts seja um array antes de filtrar
         const source = Array.isArray(allProducts) ? allProducts : [];
         const filteredProducts = source.filter(p => getProductCategory(p) === categoryName);
@@ -158,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             console.log(`${allProducts.length} produtos carregados`);
-            displayCategoryCards();
+            displayCategoryCards(mainCategories);
             
         } catch (error) {
             console.error("Erro ao buscar produtos:", error);
