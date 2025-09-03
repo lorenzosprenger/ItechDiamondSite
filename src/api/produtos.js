@@ -39,11 +39,6 @@ module.exports = async (req, res) => {
             total: total
         });
     } catch (error) {
-        console.error('Erro ao buscar produtos:', error);
-        // If DEBUG_DB is set to 'true' return the error message/stack to help debugging in staging
-        if (process.env.DEBUG_DB === 'true') {
-            return res.status(500).json({ error: 'Erro ao buscar produtos', message: error.message, stack: error.stack });
-        }
         res.status(500).json({ error: 'Erro ao buscar produtos' });
     }
 };

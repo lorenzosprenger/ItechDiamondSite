@@ -140,7 +140,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             image: product.imagem_url || product.imagem || ''
                         });
                     } else {
-                        console.error('Função addToCart não encontrada no escopo global');
                         // Fallback: tenta acessar a função diretamente
                         if (typeof addToCart === 'function') {
                             addToCart({
@@ -159,7 +158,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Função principal para buscar os dados e iniciar a página
     async function init() {
         try {
-            console.log('Iniciando busca de produtos...');
             const response = await fetch('/api/produtos');
             
             if (!response.ok) {
@@ -167,7 +165,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             
             const data = await response.json();
-            console.log('Dados recebidos da API:', data);
             
             // Normaliza resposta da API (array ou { products: [...] })
             if (Array.isArray(data)) {
@@ -175,15 +172,12 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (data && Array.isArray(data.products)) {
                 allProducts = data.products;
             } else {
-                console.warn('Resposta inesperada da API:', data);
                 allProducts = [];
             }
 
-            console.log(`${allProducts.length} produtos carregados`);
             displayCategoryCards(mainCategories);
             
         } catch (error) {
-            console.error("Erro ao buscar produtos:", error);
             if (categoryGrid) {
                 categoryGrid.innerHTML = `
                     <div class="col-span-full text-center py-12">

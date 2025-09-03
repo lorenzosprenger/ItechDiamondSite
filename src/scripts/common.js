@@ -28,7 +28,6 @@ function updateCartCount() {
 // Adiciona um produto ao carrinho (função global)
 window.addToCart = function(product) {
     if (!product || !product.id_produto) {
-        console.error('Produto inválido:', product);
         return;
     }
 
@@ -140,8 +139,8 @@ document.addEventListener("DOMContentLoaded", function() {
             window.addEventListener('scroll', handleScroll);
             handleScroll(); // Executa uma vez para verificar a posição inicial
         })
-        .catch(error => console.error('Erro ao carregar o header:', error));
-
+        .catch(() => {});
+    
     // Carrega o footer e inicializa elementos dependentes
     fetch('footer.html')
         .then(response => response.ok ? response.text() : Promise.reject('footer.html não encontrado'))
